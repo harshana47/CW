@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootNode" prefHeight="548.0" prefWidth="919.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.dashboardFormController">
+   <children>
+      <ImageView fitHeight="550.0" fitWidth="919.0">
+         <image>
+            <Image url="@assets/images/155599-antelope_canyon-vermilion_cliffs_national_monument-canyon-orange-formation-3840x2160.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="372.0" layoutY="56.0" prefHeight="62.0" prefWidth="174.0" text="Dashboard" textFill="WHITE">
+         <font>
+            <Font name="Bodoni MT Bold" size="39.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnStudent" layoutX="94.0" layoutY="342.0" mnemonicParsing="false" onAction="#btnStudentOnAction" prefHeight="113.0" prefWidth="138.0" style="-fx-background-color: #6f7fe8;" text="Students">
+         <font>
+            <Font name="Calisto MT" size="25.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnCourse" layoutX="392.0" layoutY="342.0" mnemonicParsing="false" onAction="#btnCourseOnAction" prefHeight="113.0" prefWidth="138.0" style="-fx-background-color: #6f7fe8;" text="Courses">
+         <font>
+            <Font name="Calisto MT" size="25.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnUser" layoutX="685.0" layoutY="342.0" mnemonicParsing="false" onAction="#btnUserOnAction" prefHeight="113.0" prefWidth="138.0" style="-fx-background-color: #6f7fe8;" text="Users">
+         <font>
+            <Font name="Calisto MT" size="38.0" />
+         </font>
+      </Button>
+      <Label fx:id="lblStudentCount" layoutX="178.0" layoutY="161.0" prefHeight="78.0" prefWidth="221.0" style="-fx-background-color: transparent;" text="Registered Students" textFill="WHITE">
+         <font>
+            <Font name="Bodoni MT Bold" size="27.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblCourses" alignment="CENTER" layoutX="595.0" layoutY="161.0" prefHeight="78.0" prefWidth="131.0" style="-fx-background-color: transparent;" text="Courses" textFill="WHITE">
+         <font>
+            <Font name="Bodoni MT Bold" size="27.0" />
+         </font>
+      </Label>
+      <DatePicker layoutX="697.0" layoutY="20.0" prefHeight="36.0" prefWidth="201.0" />
+   </children>
+</AnchorPane>
