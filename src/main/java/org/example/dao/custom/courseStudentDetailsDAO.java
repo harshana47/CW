@@ -15,4 +15,6 @@ public interface courseStudentDetailsDAO extends CrudDAO<courseStudentDetails> {
     List<CourseDTO> getCoursesByStudentId(int studentId) throws SQLException;
     List<courseStudentDetails> getDetailsByStudentId(int studentId, Session session);
     boolean delete(int id, Session session);
+
+    List<courseStudentDetails> getDetailsByCourseId(int cId, Session session);
 }

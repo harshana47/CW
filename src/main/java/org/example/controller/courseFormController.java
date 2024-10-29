@@ -7,11 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.CourseBO;
 import org.example.dto.CourseDTO;
@@ -72,15 +68,29 @@ public class courseFormController {
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
-        int id = Integer.parseInt(txtId.getText());
-        if (courseBO.deleteCourse(id)) {
-            showAlert("Success", "Course deleted successfully!");
-            clearFields();
-            loadAllCourses(); // Refresh the table view
-        } else {
-            showAlert("Error", "Failed to delete course!");
+        // Ensure a course ID is provided
+        CourseDTO selectedCourse = tblCourse.getSelectionModel().getSelectedItem();
+        if (selectedCourse == null) {
+            showAlert("Error", "Please select a course ID  delete.");
+            return;
         }
+
+        int cId = selectedCourse.getcId();
+
+        try {
+            if (courseBO.deleteCourse(cId)) {
+                loadAllCourses();
+                clearFields();
+                showAlert("Success", "Course deleted successfully.");
+            } else {
+                showAlert("Error", "Failed to delete course!");
+            }
+        } catch (Exception e) {
+            showAlert("Error", "Failed to delete course: " + e.getMessage());
+        }
+
     }
+
 
     @FXML
     void btnSaveOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {

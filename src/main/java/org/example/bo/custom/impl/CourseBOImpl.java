@@ -1,10 +1,15 @@
 package org.example.bo.custom.impl;
 
 import org.example.bo.custom.CourseBO;
+import org.example.config.FactoryConfiguration;
 import org.example.dao.DAOFactory;
 import org.example.dao.custom.CourseDAO;
+import org.example.dao.custom.courseStudentDetailsDAO;
 import org.example.dto.CourseDTO;
 import org.example.entity.Course;
+import org.example.entity.courseStudentDetails;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,6 +18,7 @@ import java.util.List;
 public class CourseBOImpl implements CourseBO {
 
     CourseDAO courseDAO = (CourseDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.Course);
+    private courseStudentDetailsDAO studentDetailsDAO = (courseStudentDetailsDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.courseStudentDetails); ;
 
     @Override
     public boolean saveCourse(CourseDTO courseDTO) throws SQLException, ClassNotFoundException {
@@ -25,8 +31,42 @@ public class CourseBOImpl implements CourseBO {
     }
 
     @Override
-    public boolean deleteCourse(int id) {
-        return courseDAO.delete(id);
+    public boolean deleteCourse(int cId) {
+        Session session = null;
+        Transaction transaction = null;
+        boolean isDeleted = false;
+        try {
+            // Open a session and start a transaction
+            session = FactoryConfiguration.getInstance().getSession();
+            transaction = session.beginTransaction();
+
+            List<courseStudentDetails> details = studentDetailsDAO.getDetailsByCourseId(cId, session);
+            for (courseStudentDetails detail : details) {
+                if (!studentDetailsDAO.delete(detail.getId(), session)) {
+                    transaction.rollback();
+                    return false;
+                }
+            }
+
+            isDeleted = courseDAO.delete(cId, session);
+
+            if (isDeleted) {
+                transaction.commit();
+            } else {
+                transaction.rollback();
+            }
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+
+        return isDeleted;
     }
 
     @Override

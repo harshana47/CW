@@ -3,6 +3,7 @@ package org.example.dao.custom.impl;
 import org.example.config.FactoryConfiguration;
 import org.example.dao.custom.CourseDAO;
 import org.example.entity.Course;
+import org.example.entity.Student;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -49,6 +50,7 @@ public class CourseDAOImpl implements CourseDAO {
         try {
             Course course = session.get(Course.class, cId);
             if (course != null) {
+                // This will delete all related courseStudentDetails due to orphanRemoval
                 session.delete(course);
                 transaction.commit();
                 return true;
@@ -59,8 +61,8 @@ public class CourseDAOImpl implements CourseDAO {
             e.printStackTrace(); // Handle exception
             return false;
         }
-        // Session will be closed in the calling method
     }
+
 
     @Override
     public List<Course> getAll() {
@@ -95,6 +97,21 @@ public class CourseDAOImpl implements CourseDAO {
         } catch (Exception e) {
             e.printStackTrace(); // Handle exception
             return 1; // Return 0 in case of error
+        }
+    }
+
+    @Override
+    public boolean delete(int cId, Session session) {
+        try {
+            Course course = session.get(Course.class, cId);
+            if (course != null) {
+                session.delete(course);
+                return true;
+            }
+            return false; // Student not found
+        } catch (Exception e) {
+            e.printStackTrace(); // Handle exception
+            return false;
         }
     }
 

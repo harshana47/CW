@@ -110,4 +110,16 @@ public class courseStudentDetailsDAOImpl implements courseStudentDetailsDAO {
         }
     }
 
+    @Override
+    public List<courseStudentDetails> getDetailsByCourseId(int cId, Session session) {
+        try {
+            return session.createQuery("FROM courseStudentDetails csd WHERE csd.course.cId = :courseId", courseStudentDetails.class)
+                    .setParameter("courseId", cId)
+                    .getResultList();
+        } catch (Exception e) {
+            e.printStackTrace(); // Handle exception
+            return List.of(); // Return empty list in case of error
+        }
+    }
+
 }
