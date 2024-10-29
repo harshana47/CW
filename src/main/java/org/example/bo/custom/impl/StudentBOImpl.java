@@ -5,6 +5,7 @@ import org.example.config.FactoryConfiguration;
 import org.example.dao.DAOFactory;
 import org.example.dao.custom.StudentDAO;
 import org.example.dao.custom.courseStudentDetailsDAO;
+import org.example.dto.CourseDTO;
 import org.example.dto.StudentDTO;
 import org.example.dto.courseStudentDetailsDTO;
 import org.example.entity.Student;
@@ -105,5 +106,16 @@ public class StudentBOImpl implements StudentBO {
             studentDTOs.add(new StudentDTO(student.getsId(), student.getName(), student.getContact(), student.getPayment(), student.getRegisteredDate()));
         }
         return studentDTOs;
+    }
+
+    @Override
+    public int getNextStudentId() throws SQLException {
+        return studentDAO.getNextId(); // Ensure you implement this method in the StudentDAO
+    }
+    @Override
+    public List<CourseDTO> getRegisteredCourses(int studentId) throws SQLException {
+        // Fetch registered courses using the studentDetailsDAO
+        List<CourseDTO> registeredCourses = studentDetailsDAO.getCoursesByStudentId(studentId);
+        return registeredCourses;
     }
 }

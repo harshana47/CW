@@ -1,6 +1,7 @@
 package org.example.bo.custom;
 
 import org.example.bo.SuperBO;
+import org.example.dto.CourseDTO;
 import org.example.dto.StudentDTO;
 import org.example.dto.courseStudentDetailsDTO;
 
@@ -19,4 +20,8 @@ public interface StudentBO extends SuperBO {
     StudentDTO findStudentById(int sId);
 
     List<StudentDTO> getAllStudents();
+
+    int getNextStudentId() throws SQLException;
+
+    public List<CourseDTO> getRegisteredCourses(int studentId) throws SQLException;
 }

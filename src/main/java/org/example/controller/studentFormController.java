@@ -1,5 +1,9 @@
 package org.example.controller;
 
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +27,7 @@ import java.util.List;
 
 public class studentFormController {
 
+    public Button btnClear;
     @FXML
     private Button btnDelete, btnSave, btnSearch, btnUpdate;
 
@@ -59,7 +64,17 @@ public class studentFormController {
         loadCourses();
         loadStudents();
         configureCourseListView();
+        configureTableColumns(); // Call to bind columns
+
+        // Set the next student ID in txtId
+        try {
+            int nextId = studentBO.getNextStudentId();
+            txtId.setText(String.valueOf(nextId));
+        } catch (SQLException e) {
+            showAlert("Error", "Could not retrieve next student ID: " + e.getMessage());
+        }
     }
+
 
     private void configureCourseListView() {
         lsCourses.setCellFactory(param -> new ListCell<CourseDTO>() {
@@ -78,10 +93,19 @@ public class studentFormController {
         List<CourseDTO> courses = courseBO.getAllCoursers();
         lsCourses.getItems().addAll(courses);
     }
+    private void configureTableColumns() {
+        colId.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getsId()).asObject());
+        colName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
+        colContact.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getContact()));
+        colPayment.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getPayment()).asObject());
+        colDate.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRegisteredDate()));
+    }
 
     private void loadStudents() {
         List<StudentDTO> students = studentBO.getAllStudents();
-        tblStudents.getItems().setAll(students);
+        System.out.println("Students loaded: " + students); // Debugging line
+        ObservableList<StudentDTO> studentList = FXCollections.observableArrayList(students);
+        tblStudents.setItems(studentList);
     }
 
     private void updateSelectedCourses() {
@@ -173,14 +197,23 @@ public class studentFormController {
                 txtContact.setText(studentDTO.getContact());
                 txtPayment.setText(String.valueOf(studentDTO.getPayment()));
                 txtDate.setText(studentDTO.getRegisteredDate());
+
+                // Fetch and display registered courses
+                List<CourseDTO> registeredCourses = studentBO.getRegisteredCourses(sId);
+                lsCourses.getItems().clear();
+                lsCourses.getItems().addAll(registeredCourses); // Add CourseDTO objects directly
+
             } else {
                 lblSelection.setText("Student not found");
                 showAlert("Error", "Student not found.");
             }
         } catch (NumberFormatException e) {
             showAlert("Error", "Invalid Student ID.");
+        } catch (SQLException e) {
+            showAlert("Error", "Could not retrieve registered courses: " + e.getMessage());
         }
     }
+
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
@@ -212,5 +245,10 @@ public class studentFormController {
         txtDate.clear();
         lsCourses.getSelectionModel().clearSelection();
         lblSelection.setText(""); // Clear the label as well
+    }
+
+    public void btnClearOnAction(ActionEvent actionEvent) {
+        clearFields();
+        initialize();
     }
 }

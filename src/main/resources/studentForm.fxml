@@ -33,13 +33,14 @@
             <TableColumn fx:id="colPayment" prefWidth="191.19998779296873" text="Payment" />
         </columns>
       </TableView>
-      <Button fx:id="btnSave" layoutX="751.0" layoutY="364.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="38.0" prefWidth="75.0" text="Save" />
-      <Button fx:id="btnUpdate" layoutX="662.0" layoutY="364.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="38.0" prefWidth="75.0" text="Update" />
-      <Button fx:id="btnSearch" layoutX="577.0" layoutY="364.0" mnemonicParsing="false" onAction="#btnSearchOnAction" prefHeight="38.0" prefWidth="75.0" text="Search" />
-      <Button fx:id="btnDelete" layoutX="492.0" layoutY="364.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="38.0" prefWidth="75.0" text="Delete" />
+      <Button fx:id="btnSave" layoutX="757.0" layoutY="376.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="26.0" prefWidth="70.0" text="Save" />
+      <Button fx:id="btnUpdate" layoutX="676.0" layoutY="376.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="26.0" prefWidth="70.0" text="Update" />
+      <Button fx:id="btnSearch" layoutX="594.0" layoutY="376.0" mnemonicParsing="false" onAction="#btnSearchOnAction" prefHeight="26.0" prefWidth="70.0" text="Search" />
+      <Button fx:id="btnDelete" layoutX="511.0" layoutY="376.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="26.0" prefWidth="70.0" text="Delete" />
       <TextField fx:id="txtPayment" layoutX="94.0" layoutY="258.0" prefHeight="38.0" prefWidth="243.0" promptText="Payment" />
       <Label layoutX="94.0" layoutY="230.0" prefHeight="26.0" prefWidth="94.0" text="Payment:" />
       <ListView fx:id="lsCourses" layoutX="496.0" layoutY="158.0" prefHeight="168.0" prefWidth="326.0" />
       <Label fx:id="lblSelection" layoutX="496.0" layoutY="339.0" prefHeight="18.0" prefWidth="143.0" text="Selected Coursers" />
+      <Button fx:id="btnClear" layoutX="425.0" layoutY="376.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="26.0" prefWidth="70.0" text="Clear" />
    </children>
 </AnchorPane>

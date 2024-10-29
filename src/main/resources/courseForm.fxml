@@ -27,7 +27,7 @@
          <columns>
             <TableColumn fx:id="colId" prefWidth="157.60000610351562" text="ID" />
             <TableColumn fx:id="colName" prefWidth="188.00001525878906" text="Name" />
-            <TableColumn fx:id="colContact" prefWidth="176.800048828125" text="Duration" />
+            <TableColumn fx:id="colDuration" prefWidth="176.800048828125" text="Duration" />
             <TableColumn fx:id="colFee" prefWidth="215.20001220703125" text="Course Fee" />
          </columns>
       </TableView>

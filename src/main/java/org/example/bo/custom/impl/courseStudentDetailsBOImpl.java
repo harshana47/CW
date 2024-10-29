@@ -5,6 +5,7 @@ import org.example.config.FactoryConfiguration;
 import org.example.dao.DAOFactory;
 import org.example.dao.custom.StudentDAO;
 import org.example.dao.custom.courseStudentDetailsDAO;
+import org.example.dto.CourseDTO;
 import org.example.dto.StudentDTO;
 import org.example.dto.courseStudentDetailsDTO;
 import org.example.entity.Student;
@@ -158,5 +159,15 @@ public class courseStudentDetailsBOImpl implements StudentBO {
             studentDTOs.add(new StudentDTO(student.getsId(), student.getName(), student.getContact(), student.getPayment(), student.getRegisteredDate()));
         }
         return studentDTOs;
+    }
+
+    @Override
+    public int getNextStudentId() throws SQLException {
+        return 0;
+    }
+
+    @Override
+    public List<CourseDTO> getRegisteredCourses(int studentId) throws SQLException {
+        return List.of();
     }
 }

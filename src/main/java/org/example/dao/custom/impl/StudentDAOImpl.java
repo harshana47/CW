@@ -2,11 +2,15 @@ package org.example.dao.custom.impl;
 
 import org.example.config.FactoryConfiguration;
 import org.example.dao.custom.StudentDAO;
+import org.example.dto.CourseDTO;
 import org.example.entity.Student;
+import org.example.entity.courseStudentDetails;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDAOImpl implements StudentDAO {
@@ -95,6 +99,17 @@ public class StudentDAOImpl implements StudentDAO {
             return null; // Return null if not found
         } finally {
             session.close();
+        }
+    }
+    @Override
+    public int getNextId() {
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            Query<Integer> query = session.createQuery("SELECT MAX(sId) FROM Student", Integer.class);
+            Integer maxId = query.uniqueResult();
+            return (maxId != null) ? maxId + 1 : 1; // Increment the max ID or return 1
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 1; // Return 1 in case of an error
         }
     }
 }
