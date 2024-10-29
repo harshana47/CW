@@ -5,6 +5,7 @@ import org.example.dao.custom.CourseDAO;
 import org.example.entity.Course;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -83,6 +84,18 @@ public class CourseDAOImpl implements CourseDAO {
             return null; // Return null if not found
         }
         // Session will be closed in the calling method
+    }
+
+    @Override
+    public int getNextId() {
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            Query<Integer> query = session.createQuery("SELECT MAX(cId) FROM Course", Integer.class);
+            Integer maxId = query.uniqueResult();
+            return (maxId!= null)? maxId + 1 : 1; // Increment the max ID or return 1
+        } catch (Exception e) {
+            e.printStackTrace(); // Handle exception
+            return 1; // Return 0 in case of error
+        }
     }
 
     @Override

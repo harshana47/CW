@@ -46,4 +46,8 @@ public class CourseBOImpl implements CourseBO {
         CourseDTO courseDTO = new CourseDTO(course.getcId(), course.getName(), course.getDuration(), course.getFee());
         return courseDTO;
     }
+
+    public int getNextCourseId(){
+        return courseDAO.getNextId();
+    }
 }

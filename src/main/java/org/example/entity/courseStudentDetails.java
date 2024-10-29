@@ -9,17 +9,16 @@ public class courseStudentDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private String duration;
+    private double fee;
+
     @ManyToOne
     @JoinColumn(name = "cId")
-    private Course course;
+    private Course course; // Assuming you have a Course class
 
     @ManyToOne
     @JoinColumn(name = "sId")
     private Student student;
-
-    private double fee;
-
-    private String duration;
 
     public courseStudentDetails() {
     }
@@ -29,6 +28,18 @@ public class courseStudentDetails {
         this.student = student;
         this.fee = fee;
         this.duration = duration;
+    }
+
+    public courseStudentDetails(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Course getCourse() {
@@ -66,7 +77,8 @@ public class courseStudentDetails {
     @Override
     public String toString() {
         return "courseStudentDetails{" +
-                "course=" + course +
+                "id=" + id +
+                ", course=" + course +
                 ", student=" + student +
                 ", fee=" + fee +
                 ", duration='" + duration + '\'' +

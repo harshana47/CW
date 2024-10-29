@@ -13,5 +13,6 @@ public interface courseStudentDetailsDAO extends CrudDAO<courseStudentDetails> {
     public boolean save(List<courseStudentDetails> courseStudentDetailsList, Session session) throws SQLException, ClassNotFoundException;
     public boolean save(courseStudentDetails entity, Session session) throws SQLException, ClassNotFoundException;
     List<CourseDTO> getCoursesByStudentId(int studentId) throws SQLException;
-
+    List<courseStudentDetails> getDetailsByStudentId(int studentId, Session session);
+    boolean delete(int id, Session session);
 }

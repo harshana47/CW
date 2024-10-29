@@ -5,6 +5,7 @@ import org.example.dao.custom.courseStudentDetailsDAO;
 import org.example.dto.CourseDTO;
 import org.example.entity.courseStudentDetails;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.sql.SQLException;
@@ -81,4 +82,32 @@ public class courseStudentDetailsDAOImpl implements courseStudentDetailsDAO {
     public courseStudentDetails search(int id) {
         return null;
     }
+
+    @Override
+    public List<courseStudentDetails> getDetailsByStudentId(int studentId, Session session) {
+        try {
+            return session.createQuery("FROM courseStudentDetails csd WHERE csd.student.sId = :studentId", courseStudentDetails.class)
+                    .setParameter("studentId", studentId)
+                    .getResultList();
+        } catch (Exception e) {
+            e.printStackTrace(); // Handle exception
+            return List.of(); // Return empty list in case of error
+        }
+    }
+
+    @Override
+    public boolean delete(int id, Session session) {
+        try {
+            courseStudentDetails detail = session.get(courseStudentDetails.class, id);
+            if (detail != null) {
+                session.delete(detail);
+                return true;
+            }
+            return false; // Detail not found
+        } catch (Exception e) {
+            e.printStackTrace(); // Handle exception
+            return false;
+        }
+    }
+
 }

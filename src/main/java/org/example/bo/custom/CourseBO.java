@@ -12,4 +12,6 @@ public interface CourseBO extends SuperBO {
     boolean deleteCourse(int id);
     List<CourseDTO> getAllCoursers();
     CourseDTO findCourseById(int id);
+
+    int getNextCourseId();
 }

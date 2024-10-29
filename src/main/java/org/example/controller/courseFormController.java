@@ -1,5 +1,8 @@
 package org.example.controller;
 
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -61,7 +64,10 @@ public class courseFormController {
 
     @FXML
     void initialize() {
+        configureTableColumns();
         loadAllCourses(); // Load all courses when the controller is initialized
+        int nextId = courseBO.getNextCourseId();
+        txtId.setText(String.valueOf(nextId));
     }
 
     @FXML
@@ -145,4 +151,12 @@ public class courseFormController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    private void configureTableColumns() {
+        colId.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getcId()).asObject());
+        colName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
+        colDuration.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDuration()));
+        colFee.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getFee()).asObject());
+    }
 }
+

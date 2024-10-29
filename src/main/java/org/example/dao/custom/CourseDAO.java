@@ -12,4 +12,6 @@ public interface CourseDAO extends CrudDAO<Course> {
     boolean delete(int cId);
     List<Course> getAll();
     Course findCourseById(int cId);
+
+    int getNextId();
 }

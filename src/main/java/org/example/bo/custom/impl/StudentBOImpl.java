@@ -21,7 +21,10 @@ public class StudentBOImpl implements StudentBO {
 
     private StudentDAO studentDAO = (StudentDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.Student);
     private courseStudentDetailsDAO studentDetailsDAO = (courseStudentDetailsDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.courseStudentDetails);
-
+    public StudentBOImpl() {
+        this.studentDAO = (StudentDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.Student);
+        this.studentDetailsDAO = (courseStudentDetailsDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.courseStudentDetails);
+    }
 
     @Override
     public boolean SaveStudent(StudentDTO studentDTO, List<courseStudentDetailsDTO> courseStudentDetailsDTOs) throws SQLException, ClassNotFoundException {
@@ -89,8 +92,48 @@ public class StudentBOImpl implements StudentBO {
 
     @Override
     public boolean deleteStudent(int sId) {
-        return studentDAO.delete(sId);
+        Session session = null;
+        Transaction transaction = null;
+        boolean isDeleted = false;
+
+        try {
+            session = FactoryConfiguration.getInstance().getSession();
+            transaction = session.beginTransaction();
+
+            // Delete courseStudentDetails associated with the student first
+            List<courseStudentDetails> details = studentDetailsDAO.getDetailsByStudentId(sId, session);
+            for (courseStudentDetails detail : details) {
+                if (!studentDetailsDAO.delete(detail.getId(), session)) {
+                    transaction.rollback(); // Rollback if any delete fails
+                    return false;
+                }
+            }
+
+            // Now delete the student
+            isDeleted = studentDAO.delete(sId, session);
+
+            if (isDeleted) {
+                transaction.commit();
+            } else {
+                transaction.rollback();
+            }
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+
+        return isDeleted;
     }
+
+
+
+
 
     @Override
     public StudentDTO findStudentById(int sId) {

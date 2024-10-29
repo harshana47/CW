@@ -22,6 +22,8 @@ import org.example.entity.courseStudentDetails;
 import org.example.dao.custom.courseStudentDetailsDAO;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,7 +75,13 @@ public class studentFormController {
         } catch (SQLException e) {
             showAlert("Error", "Could not retrieve next student ID: " + e.getMessage());
         }
+
+        // Set the current date in txtDate
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate currentDate = LocalDate.now();
+        txtDate.setText(currentDate.format(formatter));
     }
+
 
 
     private void configureCourseListView() {
@@ -119,17 +127,26 @@ public class studentFormController {
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
+        // Ensure a student is selected from the table
+        StudentDTO selectedStudent = tblStudents.getSelectionModel().getSelectedItem();
+        if (selectedStudent == null) {
+            showAlert("Error", "Please select a student to delete.");
+            return;
+        }
+
+        int sId = selectedStudent.getsId(); // Get the selected student's ID
+
         try {
-            int sId = Integer.parseInt(txtId.getText());
+            // Attempt to delete the student
             if (studentBO.deleteStudent(sId)) {
-                loadStudents();
-                clearFields();
+                loadStudents(); // Refresh the student list
+                clearFields(); // Clear input fields after deletion
                 showAlert("Success", "Student deleted successfully.");
             } else {
                 showAlert("Error", "Failed to delete student.");
             }
-        } catch (NumberFormatException e) {
-            showAlert("Error", "Invalid Student ID.");
+        } catch (Exception e) {
+            showAlert("Error", "An unexpected error occurred: " + e.getMessage());
         }
     }
 
@@ -139,6 +156,7 @@ public class studentFormController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
@@ -179,9 +197,7 @@ public class studentFormController {
         }
     }
 
-    private Student convertToEntity(StudentDTO studentDTO) {
-        return new Student(studentDTO.getsId(), studentDTO.getName(), studentDTO.getContact(), studentDTO.getPayment(), studentDTO.getRegisteredDate());
-    }
+
 
     private Course convertToEntity(CourseDTO courseDTO) {
         return new Course(courseDTO.getcId(), courseDTO.getName(), courseDTO.getDuration(), courseDTO.getFee());
