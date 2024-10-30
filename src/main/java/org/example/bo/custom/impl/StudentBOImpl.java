@@ -33,46 +33,40 @@ public class StudentBOImpl implements StudentBO {
         boolean isSaved = false;
 
         try {
-            // Open a session and start a transaction
             session = FactoryConfiguration.getInstance().getSession();
             transaction = session.beginTransaction();
 
-            // Convert DTO to entity and save the student
             Student studentEntity = new Student(studentDTO.getsId(), studentDTO.getName(), studentDTO.getContact(), studentDTO.getPayment(), studentDTO.getRegisteredDate());
             isSaved = studentDAO.save(studentEntity, session);
 
-            // If the student was saved, save the course details
             if (isSaved) {
                 for (courseStudentDetailsDTO detailDTO : courseStudentDetailsDTOs) {
                     courseStudentDetails detailEntity = new courseStudentDetails();
-                    detailEntity.setStudent(studentEntity); // Associate the student
-                    detailEntity.setCourse(detailDTO.getCourse()); // Set the course
+                    detailEntity.setStudent(studentEntity);
+                    detailEntity.setCourse(detailDTO.getCourse());
                     detailEntity.setFee(detailDTO.getFee());
                     detailEntity.setDuration(detailDTO.getDuration());
 
-                    // Save each course student detail
                     if (!studentDetailsDAO.save(detailEntity, session)) {
-                        isSaved = false; // If any save fails, set isSaved to false
+                        isSaved = false;
                         break;
                     }
                 }
             }
 
-            // Commit the transaction if all operations were successful
             if (isSaved) {
                 transaction.commit();
             } else {
                 transaction.rollback();
             }
         } catch (Exception e) {
-            // Handle exceptions
             if (transaction != null) {
-                transaction.rollback(); // Rollback in case of an error
+                transaction.rollback();
             }
             e.printStackTrace();
         } finally {
             if (session != null) {
-                session.close(); // Ensure the session is closed
+                session.close();
             }
         }
 
@@ -100,7 +94,6 @@ public class StudentBOImpl implements StudentBO {
             session = FactoryConfiguration.getInstance().getSession();
             transaction = session.beginTransaction();
 
-            // Delete courseStudentDetails associated with the student first
             List<courseStudentDetails> details = studentDetailsDAO.getDetailsByStudentId(sId, session);
             for (courseStudentDetails detail : details) {
                 if (!studentDetailsDAO.delete(detail.getId(), session)) {
@@ -109,7 +102,6 @@ public class StudentBOImpl implements StudentBO {
                 }
             }
 
-            // Now delete the student
             isDeleted = studentDAO.delete(sId, session);
 
             if (isDeleted) {

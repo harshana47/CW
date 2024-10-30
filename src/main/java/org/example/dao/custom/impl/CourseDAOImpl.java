@@ -22,7 +22,7 @@ public class CourseDAOImpl implements CourseDAO {
             return true;
         } catch (Exception e) {
             transaction.rollback();
-            e.printStackTrace(); // Handle exception
+            e.printStackTrace();
             return false;
         }
     }
@@ -37,10 +37,9 @@ public class CourseDAOImpl implements CourseDAO {
             return true;
         } catch (Exception e) {
             transaction.rollback();
-            e.printStackTrace(); // Handle exception
+            e.printStackTrace();
             return false;
         }
-        // Session will be closed in the calling method
     }
 
     @Override
@@ -50,15 +49,14 @@ public class CourseDAOImpl implements CourseDAO {
         try {
             Course course = session.get(Course.class, cId);
             if (course != null) {
-                // This will delete all related courseStudentDetails due to orphanRemoval
                 session.delete(course);
                 transaction.commit();
                 return true;
             }
-            return false; // Course not found
+            return false;
         } catch (Exception e) {
             transaction.rollback();
-            e.printStackTrace(); // Handle exception
+            e.printStackTrace();
             return false;
         }
     }
@@ -70,10 +68,9 @@ public class CourseDAOImpl implements CourseDAO {
         try {
             return session.createQuery("FROM Course", Course.class).list();
         } catch (Exception e) {
-            e.printStackTrace(); // Handle exception
-            return List.of(); // Return an empty list in case of error
+            e.printStackTrace();
+            return List.of();
         }
-        // Session will be closed in the calling method
     }
 
     @Override
@@ -82,10 +79,9 @@ public class CourseDAOImpl implements CourseDAO {
         try {
             return session.get(Course.class, cId);
         } catch (Exception e) {
-            e.printStackTrace(); // Handle exception
-            return null; // Return null if not found
+            e.printStackTrace();
+            return null;
         }
-        // Session will be closed in the calling method
     }
 
     @Override
@@ -93,10 +89,10 @@ public class CourseDAOImpl implements CourseDAO {
         try (Session session = FactoryConfiguration.getInstance().getSession()) {
             Query<Integer> query = session.createQuery("SELECT MAX(cId) FROM Course", Integer.class);
             Integer maxId = query.uniqueResult();
-            return (maxId!= null)? maxId + 1 : 1; // Increment the max ID or return 1
+            return (maxId!= null)? maxId + 1 : 1;
         } catch (Exception e) {
-            e.printStackTrace(); // Handle exception
-            return 1; // Return 0 in case of error
+            e.printStackTrace();
+            return 1;
         }
     }
 
@@ -108,9 +104,9 @@ public class CourseDAOImpl implements CourseDAO {
                 session.delete(course);
                 return true;
             }
-            return false; // Student not found
+            return false;
         } catch (Exception e) {
-            e.printStackTrace(); // Handle exception
+            e.printStackTrace();
             return false;
         }
     }

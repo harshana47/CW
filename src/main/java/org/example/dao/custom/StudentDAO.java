@@ -11,6 +11,6 @@ import java.util.List;
 public interface StudentDAO extends CrudDAO<Student> {
     boolean save(Student student, Session session);
     boolean update(Student student,Session session);
-    public boolean delete(int sId, Session session); // Method to delete a student by ID
+    public boolean delete(int sId, Session session);
     int getNextId() throws SQLException;
 }

@@ -175,7 +175,6 @@ public class studentFormController {
         StudentDTO studentDTO = new StudentDTO(0, name, contact, payment, registeredDate);
         List<courseStudentDetailsDTO> courseStudentDetailsDTOs = new ArrayList<>();
 
-        // Gather selected course details
         ObservableList<CourseDTO> selectedCourses = lsCourses.getSelectionModel().getSelectedItems();
         for (CourseDTO courseDTO : selectedCourses) {
             courseStudentDetailsDTO courseStudentDetailDTO = new courseStudentDetailsDTO();

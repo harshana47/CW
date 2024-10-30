@@ -30,7 +30,7 @@ public class StudentDAOImpl implements StudentDAO {
             transaction.commit();
             return true;
         } catch (Exception e) {
-            e.printStackTrace(); // Handle exception
+            e.printStackTrace();
             return false;
         }
     }
@@ -48,9 +48,9 @@ public class StudentDAOImpl implements StudentDAO {
                 session.delete(student);
                 return true;
             }
-            return false; // Student not found
+            return false;
         } catch (Exception e) {
-            e.printStackTrace(); // Handle exception
+            e.printStackTrace();
             return false;
         }
     }
@@ -61,8 +61,8 @@ public class StudentDAOImpl implements StudentDAO {
         try (Session session = FactoryConfiguration.getInstance().getSession()) {
             return session.createQuery("FROM Student", Student.class).list();
         } catch (Exception e) {
-            e.printStackTrace(); // Handle exception
-            return List.of(); // Return an empty list in case of error
+            e.printStackTrace();
+            return List.of();
         }
     }
 
@@ -71,8 +71,8 @@ public class StudentDAOImpl implements StudentDAO {
         try (Session session = FactoryConfiguration.getInstance().getSession()) {
             return session.get(Student.class, id);
         } catch (Exception e) {
-            e.printStackTrace(); // Handle exception
-            return null; // Return null if not found
+            e.printStackTrace();
+            return null;
         }
     }
 
@@ -82,7 +82,7 @@ public class StudentDAOImpl implements StudentDAO {
             session.save(student);
             return true;
         } catch (Exception e) {
-            e.printStackTrace(); // Handle exception
+            e.printStackTrace();
             return false;
         }
     }
@@ -97,10 +97,10 @@ public class StudentDAOImpl implements StudentDAO {
         try (Session session = FactoryConfiguration.getInstance().getSession()) {
             Query<Integer> query = session.createQuery("SELECT MAX(sId) FROM Student", Integer.class);
             Integer maxId = query.uniqueResult();
-            return (maxId != null) ? maxId + 1 : 1; // Increment the max ID or return 1
+            return (maxId != null) ? maxId + 1 : 1;
         } catch (Exception e) {
             e.printStackTrace();
-            return 1; // Return 1 in case of an error
+            return 1;
         }
     }
 }
