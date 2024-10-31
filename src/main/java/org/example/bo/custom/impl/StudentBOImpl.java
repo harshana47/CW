@@ -46,6 +46,7 @@ public class StudentBOImpl implements StudentBO {
                     detailEntity.setCourse(detailDTO.getCourse());
                     detailEntity.setFee(detailDTO.getFee());
                     detailEntity.setDuration(detailDTO.getDuration());
+                    detailEntity.setPayment(detailDTO.getPayment());
 
                     if (!studentDetailsDAO.save(detailEntity, session)) {
                         isSaved = false;

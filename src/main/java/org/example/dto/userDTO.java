@@ -1,13 +1,7 @@
-package org.example.entity;
+package org.example.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-@Entity
-public class user {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class userDTO {
+
     private int id;
 
     private String username;
@@ -16,10 +10,10 @@ public class user {
 
     private String position;
 
-    public user() {
+    public userDTO() {
     }
 
-    public user(int id, String username, String password, String position) {
+    public userDTO(int id, String username, String password, String position) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -59,9 +53,8 @@ public class user {
     }
 
     @Override
-    public String
-    toString() {
-        return "user{" +
+    public String toString() {
+        return "userDTO{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +

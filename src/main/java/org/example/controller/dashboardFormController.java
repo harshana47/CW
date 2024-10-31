@@ -14,6 +14,7 @@ import java.io.IOException;
 public class dashboardFormController {
 
     public AnchorPane rootNode;
+    public Button btnDetails;
     @FXML
     private Button btnCourse;
 
@@ -48,8 +49,20 @@ public class dashboardFormController {
     }
 
     @FXML
-    void btnUserOnAction(ActionEvent event) {
-
+    void btnUserOnAction(ActionEvent event) throws IOException {
+        AnchorPane node = FXMLLoader.load(this.getClass().getResource("/userform.fxml"));
+        Scene scene = new Scene(node);
+        Stage stage = (Stage) this.rootNode.getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Course Form");
     }
 
+    @FXML
+    void btnDetailsOnAction(ActionEvent actionEvent) throws IOException {
+        AnchorPane node = FXMLLoader.load(this.getClass().getResource("/courseStudentDetailsForm.fxml"));
+        Scene scene = new Scene(node);
+        Stage stage = (Stage) this.rootNode.getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("User Form");
+    }
 }

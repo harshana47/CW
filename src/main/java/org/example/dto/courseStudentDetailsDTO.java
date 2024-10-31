@@ -8,9 +8,19 @@ public class courseStudentDetailsDTO {
     private double fee;
     private String duration;
     private Course course;
+    private double payment;
 
 
     public courseStudentDetailsDTO() {
+    }
+
+    public courseStudentDetailsDTO(int cId, int sId, double fee, String duration, Course course, double payment) {
+        this.cId = cId;
+        this.sId = sId;
+        this.fee = fee;
+        this.duration = duration;
+        this.course = course;
+        this.payment = payment;
     }
 
     public courseStudentDetailsDTO(int cId, int sId, double fee, String duration, Course course) {
@@ -26,6 +36,14 @@ public class courseStudentDetailsDTO {
         this.sId = sId;
         this.fee = fee;
         this.duration = duration;
+    }
+
+    public double getPayment() {
+        return payment;
+    }
+
+    public void setPayment(double payment) {
+        this.payment = payment;
     }
 
     public int getcId() {
@@ -76,6 +94,7 @@ public class courseStudentDetailsDTO {
                 ", fee=" + fee +
                 ", duration='" + duration + '\'' +
                 ", course=" + course +
+                ", payment=" + payment +
                 '}';
     }
 }

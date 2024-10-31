@@ -43,9 +43,9 @@ public class studentFormController {
     @FXML
     private Label lblSelection;
     @FXML
-    private ListView<CourseDTO> lsCourses; // Corrected naming
+    private ListView<CourseDTO> lsCourses;
     @FXML
-    private TableView<StudentDTO> tblStudents; // Corrected naming
+    private TableView<StudentDTO> tblStudents;
 
     @FXML
     private TextField txtContact, txtDate, txtId, txtName, txtPayment;
@@ -54,7 +54,6 @@ public class studentFormController {
     private CourseBO courseBO;
 
     public studentFormController() {
-        // Initialize the BOs using the factory
         this.studentBO = (StudentBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.Student);
         this.courseBO = (CourseBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.Course);
     }
@@ -66,9 +65,8 @@ public class studentFormController {
         loadCourses();
         loadStudents();
         configureCourseListView();
-        configureTableColumns(); // Call to bind columns
+        configureTableColumns();
 
-        // Set the next student ID in txtId
         try {
             int nextId = studentBO.getNextStudentId();
             txtId.setText(String.valueOf(nextId));
@@ -127,20 +125,18 @@ public class studentFormController {
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
-        // Ensure a student is selected from the table
         StudentDTO selectedStudent = tblStudents.getSelectionModel().getSelectedItem();
         if (selectedStudent == null) {
             showAlert("Error", "Please select a student to delete.");
             return;
         }
 
-        int sId = selectedStudent.getsId(); // Get the selected student's ID
+        int sId = selectedStudent.getsId();
 
         try {
-            // Attempt to delete the student
             if (studentBO.deleteStudent(sId)) {
-                loadStudents(); // Refresh the student list
-                clearFields(); // Clear input fields after deletion
+                loadStudents();
+                clearFields();
                 showAlert("Success", "Student deleted successfully.");
             } else {
                 showAlert("Error", "Failed to delete student.");
@@ -163,7 +159,7 @@ public class studentFormController {
         String name = txtName.getText();
         String contact = txtContact.getText();
         double payment;
-        String registeredDate = txtDate.getText(); // Ensure proper date format
+        String registeredDate = txtDate.getText();
 
         try {
             payment = Double.parseDouble(txtPayment.getText());
@@ -176,27 +172,27 @@ public class studentFormController {
         List<courseStudentDetailsDTO> courseStudentDetailsDTOs = new ArrayList<>();
 
         ObservableList<CourseDTO> selectedCourses = lsCourses.getSelectionModel().getSelectedItems();
+        int count = selectedCourses.size();
+        double eachCourse = studentDTO.getPayment()/count;
         for (CourseDTO courseDTO : selectedCourses) {
             courseStudentDetailsDTO courseStudentDetailDTO = new courseStudentDetailsDTO();
-            courseStudentDetailDTO.setCourse(convertToEntity(courseDTO)); // Assuming you have a method to convert CourseDTO to Course
+            courseStudentDetailDTO.setCourse(convertToEntity(courseDTO));
             courseStudentDetailDTO.setFee(courseDTO.getFee());
             courseStudentDetailDTO.setDuration(courseDTO.getDuration());
             courseStudentDetailsDTOs.add(courseStudentDetailDTO);
+            courseStudentDetailDTO.setPayment(eachCourse);
         }
 
         try {
-            // Attempt to save student and course details in a transaction
             if (studentBO.SaveStudent(studentDTO, courseStudentDetailsDTOs)) {
-                loadStudents(); // Refresh the table
-                clearFields(); // Clear input fields after saving
+                loadStudents();
+                clearFields();
                 showAlert("Success", "Student saved successfully.");
             }
         } catch (SQLException | ClassNotFoundException e) {
             showAlert("Error", "Failed to save student: " + e.getMessage());
         }
     }
-
-
 
     private Course convertToEntity(CourseDTO courseDTO) {
         return new Course(courseDTO.getcId(), courseDTO.getName(), courseDTO.getDuration(), courseDTO.getFee());
@@ -213,10 +209,9 @@ public class studentFormController {
                 txtPayment.setText(String.valueOf(studentDTO.getPayment()));
                 txtDate.setText(studentDTO.getRegisteredDate());
 
-                // Fetch and display registered courses
                 List<CourseDTO> registeredCourses = studentBO.getRegisteredCourses(sId);
                 lsCourses.getItems().clear();
-                lsCourses.getItems().addAll(registeredCourses); // Add CourseDTO objects directly
+                lsCourses.getItems().addAll(registeredCourses);
 
             } else {
                 lblSelection.setText("Student not found");

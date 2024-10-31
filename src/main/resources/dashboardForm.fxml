@@ -25,7 +25,7 @@
             <Font name="Calisto MT" size="25.0" />
          </font>
       </Button>
-      <Button fx:id="btnCourse" layoutX="392.0" layoutY="342.0" mnemonicParsing="false" onAction="#btnCourseOnAction" prefHeight="113.0" prefWidth="138.0" style="-fx-background-color: #6f7fe8;" text="Courses">
+      <Button fx:id="btnCourse" layoutX="296.0" layoutY="342.0" mnemonicParsing="false" onAction="#btnCourseOnAction" prefHeight="113.0" prefWidth="138.0" style="-fx-background-color: #6f7fe8;" text="Courses">
          <font>
             <Font name="Calisto MT" size="25.0" />
          </font>
@@ -46,5 +46,10 @@
          </font>
       </Label>
       <DatePicker layoutX="697.0" layoutY="20.0" prefHeight="36.0" prefWidth="201.0" />
+      <Button fx:id="btnDetails" layoutX="491.0" layoutY="342.0" mnemonicParsing="false" onAction="#btnDetailsOnAction" prefHeight="113.0" prefWidth="138.0" style="-fx-background-color: #6f7fe8;" text="Details">
+         <font>
+            <Font name="Calisto MT" size="25.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
