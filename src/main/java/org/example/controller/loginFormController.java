@@ -36,19 +36,17 @@ public class loginFormController {
         String password = txtPassword.getText();
 
         try {
-            // Check if the user exists and the password matches
             userDTO user = UserBO.findUserByUsername(username);
             if (user != null && user.getPassword().equals(password)) {
-                // Login successful
                 showAlert("Login Successful", "Welcome, " + username + "!");
 
-                // Find position by username
                 userDTO position = UserBO.findPositionByUserName(username);
                 if (position != null) {
-                    // Navigate to dashboard if position is "Admin"
                     if ("Admin".equalsIgnoreCase(position.getPosition())) {
-                        whereToGo();
-                    } else {
+                        adminGoes();
+                    } else if ("Coordinator".equalsIgnoreCase(position.getPosition())) {
+                        coordinatorGoes();
+                } else {
                         showAlert("Access Denied", "You do not have permission to access the dashboard.");
                     }
                 } else {
@@ -61,12 +59,20 @@ public class loginFormController {
         }
     }
 
-    void whereToGo() throws IOException {
+    void adminGoes() throws IOException {
         AnchorPane node = FXMLLoader.load(this.getClass().getResource("/dashboardForm.fxml"));
         Scene scene = new Scene(node);
         Stage stage = (Stage) this.rootNode.getScene().getWindow();
         stage.setScene(scene);
         stage.setTitle("Dashboard");
+    }
+
+    void coordinatorGoes() throws IOException {
+        AnchorPane node = FXMLLoader.load(this.getClass().getResource("/courseStudentDetailsForm.fxml"));
+        Scene scene = new Scene(node);
+        Stage stage = (Stage) this.rootNode.getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Course Student Details");
     }
 
     private void showAlert(String title, String message) {

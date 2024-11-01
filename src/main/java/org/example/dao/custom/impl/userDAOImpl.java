@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class userDAOImpl implements userDAO {
@@ -68,9 +69,10 @@ public class userDAOImpl implements userDAO {
             return query.list();
         } catch (Exception e) {
             e.printStackTrace();
-            return List.of(); // Return an empty list on error
+            return new ArrayList<>(); // Return an empty list on error
         }
     }
+
 
     @Override
     public user search(int id) {

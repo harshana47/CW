@@ -74,7 +74,6 @@ public class studentFormController {
             showAlert("Error", "Could not retrieve next student ID: " + e.getMessage());
         }
 
-        // Set the current date in txtDate
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate currentDate = LocalDate.now();
         txtDate.setText(currentDate.format(formatter));
@@ -109,7 +108,7 @@ public class studentFormController {
 
     private void loadStudents() {
         List<StudentDTO> students = studentBO.getAllStudents();
-        System.out.println("Students loaded: " + students); // Debugging line
+        System.out.println("Students loaded: " + students);
         ObservableList<StudentDTO> studentList = FXCollections.observableArrayList(students);
         tblStudents.setItems(studentList);
     }
@@ -254,11 +253,17 @@ public class studentFormController {
         txtPayment.clear();
         txtDate.clear();
         lsCourses.getSelectionModel().clearSelection();
-        lblSelection.setText(""); // Clear the label as well
+        lblSelection.setText("");
     }
 
     public void btnClearOnAction(ActionEvent actionEvent) {
         clearFields();
-        initialize();
+
+        // Clear existing items in the list view to prevent duplication
+        lsCourses.getItems().clear();
+
+        loadCourses(); // Load courses again
+        loadStudents();
     }
+
 }
