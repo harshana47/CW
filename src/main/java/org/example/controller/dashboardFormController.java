@@ -41,11 +41,12 @@ public class dashboardFormController {
 
     @FXML
     void btnStudentOnAction(ActionEvent event) throws IOException {
-        AnchorPane node = FXMLLoader.load(this.getClass().getResource("/studentForm.fxml"));
-        Scene scene = new Scene(node);
-        Stage stage = (Stage) this.rootNode.getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("Course Form");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/studentForm.fxml"));
+        AnchorPane detailsPane = loader.load();
+        Stage detailsStage = new Stage();
+        detailsStage.setTitle("Student Form");
+        detailsStage.setScene(new Scene(detailsPane));
+        detailsStage.show();
     }
 
     @FXML
@@ -59,10 +60,11 @@ public class dashboardFormController {
 
     @FXML
     void btnDetailsOnAction(ActionEvent actionEvent) throws IOException {
-        AnchorPane node = FXMLLoader.load(this.getClass().getResource("/courseStudentDetailsForm.fxml"));
-        Scene scene = new Scene(node);
-        Stage stage = (Stage) this.rootNode.getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("User Form");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/courseStudentDetailsForm.fxml"));
+        AnchorPane detailsPane = loader.load();
+        Stage detailsStage = new Stage();
+        detailsStage.setTitle("Course Student Details");
+        detailsStage.setScene(new Scene(detailsPane));
+        detailsStage.show();
     }
 }

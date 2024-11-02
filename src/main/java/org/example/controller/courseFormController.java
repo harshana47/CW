@@ -136,7 +136,7 @@ public class courseFormController {
         if (courseBO.updateCourse(courseDTO)) {
             showAlert("Success", "Course updated successfully!");
             clearFields();
-            loadAllCourses(); // Refresh the table view
+            loadAllCourses();
         } else {
             showAlert("Error", "Failed to update course!");
         }
