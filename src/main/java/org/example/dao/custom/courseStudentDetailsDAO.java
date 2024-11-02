@@ -17,4 +17,6 @@ public interface courseStudentDetailsDAO extends CrudDAO<courseStudentDetails> {
     boolean delete(int id, Session session);
 
     List<courseStudentDetails> getDetailsByCourseId(int cId, Session session);
+
+    List<courseStudentDetails> getDetailsByCourseIds(int courseId);
 }

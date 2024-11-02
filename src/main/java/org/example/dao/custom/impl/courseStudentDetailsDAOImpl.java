@@ -75,7 +75,14 @@ public class courseStudentDetailsDAOImpl implements courseStudentDetailsDAO {
 
     @Override
     public List<courseStudentDetails> getAll() {
-        return List.of();
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            String hql = "FROM courseStudentDetails";
+            Query<courseStudentDetails> query = session.createQuery(hql, courseStudentDetails.class);
+            return query.list();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>(); // Return an empty list in case of error
+        }
     }
 
     @Override
@@ -119,6 +126,18 @@ public class courseStudentDetailsDAOImpl implements courseStudentDetailsDAO {
         } catch (Exception e) {
             e.printStackTrace(); // Handle exception
             return List.of(); // Return empty list in case of error
+        }
+    }
+    @Override
+    public List<courseStudentDetails> getDetailsByCourseIds(int courseId){
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            String hql = "FROM courseStudentDetails csd WHERE csd.course.cId = :courseId";
+            Query<courseStudentDetails> query = session.createQuery(hql, courseStudentDetails.class);
+            query.setParameter("courseId", courseId);
+            return query.list();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>(); // Return an empty list in case of error
         }
     }
 

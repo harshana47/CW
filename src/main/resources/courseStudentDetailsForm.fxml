@@ -24,7 +24,7 @@
             <Font name="Bodoni MT Bold" size="39.0" />
          </font>
       </Label>
-      <TextField fx:id="txtStudentId" layoutX="24.0" layoutY="95.0" prefHeight="34.0" prefWidth="202.0" promptText="Student ID" />
+      <TextField fx:id="txtCourseId" layoutX="24.0" layoutY="95.0" prefHeight="34.0" prefWidth="202.0" promptText="Student ID" />
       <Button fx:id="btnSearch" layoutX="239.0" layoutY="95.0" mnemonicParsing="false" onAction="#btnSearchOnAction" prefHeight="34.0" prefWidth="65.0" text="Search" />
    </children>
 </AnchorPane>

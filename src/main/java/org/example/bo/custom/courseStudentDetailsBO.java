@@ -12,4 +12,6 @@ public interface courseStudentDetailsBO extends SuperBO {
     boolean delete(int id) throws SQLException, ClassNotFoundException;
     List<courseStudentDetailsDTO> getAll() throws Exception;
     courseStudentDetailsDTO findById(int id) throws SQLException, ClassNotFoundException;
+    List<courseStudentDetailsDTO> getByCourseId(int courseId) throws Exception;
+
 }

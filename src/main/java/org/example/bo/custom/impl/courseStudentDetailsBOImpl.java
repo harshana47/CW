@@ -40,46 +40,48 @@ public class courseStudentDetailsBOImpl implements courseStudentDetailsBO {
         return false;
     }
 
-
     @Override
-    public List<courseStudentDetailsDTO> getAll() throws Exception{
+    public List<courseStudentDetailsDTO> getAll() throws Exception {
+        List<courseStudentDetails> results = studentDetailsDAO.getAll();
         List<courseStudentDetailsDTO> courseStudentDetailsList = new ArrayList<>();
-        Transaction transaction = null;
 
-        try (Session session = FactoryConfiguration.getInstance().getSession()) {
-            transaction = session.beginTransaction();
-
-            // HQL query to get all courseStudentDetails records
-            String hql = "FROM courseStudentDetails"; // Assuming courseStudentDetails is your entity class
-            Query<courseStudentDetails> query = session.createQuery(hql, courseStudentDetails.class);
-            List<courseStudentDetails> results = query.list();
-
-            // Convert results to DTOs
-            for (courseStudentDetails entity : results) {
-                courseStudentDetailsDTO dto = new courseStudentDetailsDTO(
-                        entity.getCourse().getcId(), // Assuming you want to get course ID
-                        entity.getStudent().getsId(), // Assuming you want to get student ID
-                        entity.getFee(),
-                        entity.getDuration()
-                );
-                courseStudentDetailsList.add(dto);
-            }
-
-            transaction.commit(); // Commit the transaction
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback(); // Rollback if there's an error
-            }
-            throw e; // Rethrow the exception for handling elsewhere
+        for (courseStudentDetails entity : results) {
+            courseStudentDetailsDTO dto = new courseStudentDetailsDTO(
+                    entity.getCourse().getcId(),
+                    entity.getStudent().getsId(),
+                    entity.getFee(),
+                    entity.getDuration()
+            );
+            courseStudentDetailsList.add(dto);
         }
 
         return courseStudentDetailsList;
     }
 
+
     @Override
     public courseStudentDetailsDTO findById(int id) throws SQLException, ClassNotFoundException {
         return null;
     }
+
+    @Override
+    public List<courseStudentDetailsDTO> getByCourseId(int courseId) throws Exception {
+        List<courseStudentDetails> results = studentDetailsDAO.getDetailsByCourseIds(courseId);
+        List<courseStudentDetailsDTO> courseStudentDetailsList = new ArrayList<>();
+
+        for (courseStudentDetails entity : results) {
+            courseStudentDetailsDTO dto = new courseStudentDetailsDTO(
+                    entity.getCourse().getcId(),
+                    entity.getStudent().getsId(),
+                    entity.getFee(),
+                    entity.getDuration()
+            );
+            courseStudentDetailsList.add(dto);
+        }
+
+        return courseStudentDetailsList;
+    }
+
 }
 
 

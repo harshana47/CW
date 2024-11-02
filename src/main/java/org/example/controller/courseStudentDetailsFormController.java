@@ -39,18 +39,52 @@ public class courseStudentDetailsFormController {
     private TableView<courseStudentDetailsDTO> tblRegister;
 
     @FXML
-    private TextField txtStudentId;
+    private TextField txtCourseId;
+
+    private courseStudentDetailsBO courseStudentDetailsBOs = (org.example.bo.custom.courseStudentDetailsBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.courseStudentDetails);
 
     @FXML
     void btnSearchOnAction(ActionEvent event) {
+        String courseIdText = txtCourseId.getText().trim();
 
+        // Validate input
+        if (courseIdText.isEmpty()) {
+            // You can show an alert dialog here if needed
+            System.out.println("Please enter a Course ID.");
+            return;
+        }
+
+        try {
+            int courseId = Integer.parseInt(courseIdText); // Convert the input to an integer
+
+            // Fetch the details by course ID
+            List<courseStudentDetailsDTO> courseStudentDetailsDTOList = courseStudentDetailsBOs.getByCourseId(courseId);
+
+            // Check if the list is empty
+            if (courseStudentDetailsDTOList.isEmpty()) {
+                System.out.println("No details found for Course ID: " + courseId);
+            } else {
+                System.out.println("Course details loaded for Course ID: " + courseId);
+            }
+
+            // Update the TableView
+            ObservableList<courseStudentDetailsDTO> courseStudentDetailsDTOS = FXCollections.observableArrayList(courseStudentDetailsDTOList);
+            tblRegister.setItems(courseStudentDetailsDTOS);
+
+        } catch (NumberFormatException e) {
+            // Handle invalid input (not a number)
+            System.out.println("Invalid Course ID. Please enter a numeric value.");
+        } catch (Exception e) {
+            // Handle other exceptions
+            e.printStackTrace();
+            System.out.println("An error occurred while searching for course details.");
+        }
     }
 
-    private courseStudentDetailsBO courseStudentDetailsBOs;
+
 
     @FXML
     void initialize() {
-        courseStudentDetailsBOs = (org.example.bo.custom.courseStudentDetailsBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.courseStudentDetails);
         configureTableColumns();
         try {
             loadData();
