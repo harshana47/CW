@@ -138,6 +138,7 @@ public class studentFormController {
 
         int sId = selectedStudent.getsId();
 
+
         try {
             if (studentBO.deleteStudent(sId)) {
                 loadStudents();
