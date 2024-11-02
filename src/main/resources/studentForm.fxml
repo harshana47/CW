@@ -42,5 +42,6 @@
       <ListView fx:id="lsCourses" layoutX="496.0" layoutY="158.0" prefHeight="168.0" prefWidth="326.0" />
       <Label fx:id="lblSelection" layoutX="496.0" layoutY="339.0" prefHeight="18.0" prefWidth="143.0" text="Selected Coursers" />
       <Button fx:id="btnClear" layoutX="425.0" layoutY="376.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="26.0" prefWidth="70.0" text="Clear" />
+      <Button fx:id="btnDetails" layoutX="812.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnDetailsOnAction" prefHeight="26.0" prefWidth="94.0" text="See Details" />
    </children>
 </AnchorPane>

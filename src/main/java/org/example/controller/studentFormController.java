@@ -7,8 +7,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.collections.ObservableList;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.CourseBO;
 import org.example.bo.custom.StudentBO;
@@ -21,6 +25,7 @@ import org.example.entity.Student;
 import org.example.entity.courseStudentDetails;
 import org.example.dao.custom.courseStudentDetailsDAO;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -30,6 +35,7 @@ import java.util.List;
 public class studentFormController {
 
     public Button btnClear;
+    public Button btnDetails;
     @FXML
     private Button btnDelete, btnSave, btnSearch, btnUpdate;
 
@@ -136,6 +142,10 @@ public class studentFormController {
             if (studentBO.deleteStudent(sId)) {
                 loadStudents();
                 clearFields();
+                initialize();
+                lsCourses.getItems().clear();
+                loadCourses();
+                loadStudents();
                 showAlert("Success", "Student deleted successfully.");
             } else {
                 showAlert("Error", "Failed to delete student.");
@@ -266,4 +276,13 @@ public class studentFormController {
         loadStudents();
     }
 
+    public void btnDetailsOnAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/courseStudentDetailsForm.fxml"));
+        AnchorPane detailsPane = loader.load();
+
+        Stage detailsStage = new Stage();
+        detailsStage.setTitle("Course Student Details");
+        detailsStage.setScene(new Scene(detailsPane));
+        detailsStage.show();
+    }
 }

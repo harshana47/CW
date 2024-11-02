@@ -46,6 +46,8 @@ public class loginFormController {
                         adminGoes();
                     } else if ("Coordinator".equalsIgnoreCase(position.getPosition())) {
                         coordinatorGoes();
+                    } else if ("Teacher".equalsIgnoreCase(position.getPosition())){
+                        teacherGoes();
                 } else {
                         showAlert("Access Denied", "You do not have permission to access the dashboard.");
                     }
@@ -68,11 +70,19 @@ public class loginFormController {
     }
 
     void coordinatorGoes() throws IOException {
-        AnchorPane node = FXMLLoader.load(this.getClass().getResource("/courseStudentDetailsForm.fxml"));
+        AnchorPane node = FXMLLoader.load(this.getClass().getResource("/studentForm.fxml"));
         Scene scene = new Scene(node);
         Stage stage = (Stage) this.rootNode.getScene().getWindow();
         stage.setScene(scene);
         stage.setTitle("Course Student Details");
+    }
+
+    void teacherGoes() throws IOException {
+        AnchorPane node = FXMLLoader.load(this.getClass().getResource("/courseStudentDetailsForm.fxml"));
+        Scene scene = new Scene(node);
+        Stage stage = (Stage) this.rootNode.getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Course Form");
     }
 
     private void showAlert(String title, String message) {
