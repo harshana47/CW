@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.userBO;
 import org.example.dto.userDTO;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -127,7 +128,10 @@ public class userFormController {
         String position = cmbPosition.getValue();
         String username = txtUserName.getText();
 
-        userDTO UserDTO = new userDTO(0, username, password, position);
+        // Hash the password
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+
+        userDTO UserDTO = new userDTO(0, username, hashedPassword, position);
 
         if (UserBO.save(UserDTO)) {
             showAlert("Success", "User saved successfully");
@@ -165,7 +169,10 @@ public class userFormController {
             String password = txtPassword.getText();
             String position = cmbPosition.getValue();
 
-            userDTO UserDTO = new userDTO(id, username, password, position);
+            // Hash the password
+            String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+
+            userDTO UserDTO = new userDTO(id, username, hashedPassword, position);
 
             if (UserBO.update(UserDTO)) {
                 showAlert("Success", "User updated successfully");
