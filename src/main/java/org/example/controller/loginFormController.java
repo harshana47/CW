@@ -54,6 +54,8 @@ public class loginFormController {
                 } else {
                     showAlert("Login Failed", "User does not exist.");
                 }
+            }else {
+                showAlert("Login Failed", "Incorrect password or Username.");
             }
             } catch (Exception e) {
             e.printStackTrace();

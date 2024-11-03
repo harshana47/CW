@@ -4,17 +4,24 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.userBO;
 import org.example.dto.userDTO;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
 public class userFormController {
 
     public ComboBox<String> cmbPosition;
+    public Button btnBack;
+    public AnchorPane rootNode;
     @FXML
     private Button btnClear;
 
@@ -179,5 +186,13 @@ public class userFormController {
         alert.setTitle(title);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public void btnBackOnAction(ActionEvent actionEvent) throws IOException {
+        AnchorPane node = FXMLLoader.load(this.getClass().getResource("/dashboardForm.fxml"));
+        Scene scene = new Scene(node);
+        Stage stage = (Stage) this.rootNode.getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Course Form");
     }
 }
