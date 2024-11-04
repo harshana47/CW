@@ -5,12 +5,18 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="572.0" prefWidth="814.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.courseStudentDetailsFormController">
    <children>
+      <ImageView fitHeight="573.0" fitWidth="814.0">
+         <image>
+            <Image url="@assets/images/1260427.jpg" />
+         </image>
+      </ImageView>
       <TableView fx:id="tblRegister" layoutX="24.0" layoutY="165.0" prefHeight="383.0" prefWidth="766.0">
         <columns>
           <TableColumn fx:id="colStudentId" prefWidth="128.79995346069336" text="Student ID" />
@@ -19,7 +25,7 @@
             <TableColumn fx:id="colDuration" prefWidth="227.199951171875" text="Duration" />
         </columns>
       </TableView>
-      <Label layoutX="249.0" layoutY="14.0" prefHeight="55.0" prefWidth="315.0" text="Registered Students">
+      <Label layoutX="249.0" layoutY="14.0" prefHeight="55.0" prefWidth="315.0" text="Registered Students" textFill="WHITE">
          <font>
             <Font name="Bodoni MT Bold" size="39.0" />
          </font>

@@ -45,7 +45,7 @@
             <Font name="Bodoni MT Bold" size="27.0" />
          </font>
       </Label>
-      <DatePicker layoutX="697.0" layoutY="20.0" prefHeight="36.0" prefWidth="201.0" />
+      <DatePicker fx:id="datePicker" layoutX="697.0" layoutY="20.0" onAction="#datePickerOnAction" prefHeight="36.0" prefWidth="201.0" />
       <Button fx:id="btnDetails" layoutX="491.0" layoutY="342.0" mnemonicParsing="false" onAction="#btnDetailsOnAction" prefHeight="113.0" prefWidth="138.0" style="-fx-background-color: #6f7fe8;" text="Details">
          <font>
             <Font name="Calisto MT" size="25.0" />

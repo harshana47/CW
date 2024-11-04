@@ -5,24 +5,31 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="548.0" prefWidth="919.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.courseFormController">
    <children>
-      <Label layoutX="308.0" layoutY="24.0" prefHeight="55.0" prefWidth="325.0" text="Courses Managment">
+      <ImageView fitHeight="548.0" fitWidth="919.0">
+         <image>
+            <Image url="@assets/images/photo-1470813740244-df37b8c1edcb.jpeg" />
+         </image>
+      </ImageView>
+      <Label layoutX="308.0" layoutY="24.0" prefHeight="55.0" prefWidth="325.0" text="Courses Managment" textFill="WHITE">
          <font>
             <Font name="Bodoni MT Bold" size="39.0" />
          </font>
       </Label>
       <TextField fx:id="txtId" layoutX="101.0" layoutY="119.0" prefHeight="38.0" prefWidth="243.0" promptText="ID" />
-      <Label layoutX="101.0" layoutY="91.0" prefHeight="26.0" prefWidth="94.0" text="Course ID:" />
+      <Label layoutX="101.0" layoutY="91.0" prefHeight="26.0" prefWidth="94.0" text="Course ID:" textFill="WHITE" />
       <TextField fx:id="txtName" layoutX="592.0" layoutY="119.0" prefHeight="38.0" prefWidth="243.0" promptText="Name" />
-      <Label layoutX="592.0" layoutY="91.0" prefHeight="26.0" prefWidth="94.0" text="Course Name:" />
+      <Label layoutX="592.0" layoutY="91.0" prefHeight="26.0" prefWidth="94.0" text="Course Name:" textFill="WHITE" />
       <TextField fx:id="txtDuration" layoutX="103.0" layoutY="197.0" prefHeight="38.0" prefWidth="243.0" promptText="Duration" />
-      <Label layoutX="103.0" layoutY="169.0" prefHeight="26.0" prefWidth="94.0" text="Duration:" />
+      <Label layoutX="103.0" layoutY="169.0" prefHeight="26.0" prefWidth="94.0" text="Duration:" textFill="WHITE" />
       <TextField fx:id="txtFee" layoutX="594.0" layoutY="197.0" prefHeight="38.0" prefWidth="243.0" promptText="Fee" />
-      <Label layoutX="594.0" layoutY="169.0" prefHeight="26.0" prefWidth="94.0" text="Course Fee:" />
+      <Label layoutX="594.0" layoutY="169.0" prefHeight="26.0" prefWidth="94.0" text="Course Fee:" textFill="WHITE" />
       <TableView fx:id="tblCourse" layoutX="101.0" layoutY="329.0" prefHeight="200.0" prefWidth="737.0">
          <columns>
             <TableColumn fx:id="colId" prefWidth="157.60000610351562" text="ID" />

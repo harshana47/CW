@@ -5,16 +5,20 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class dashboardFormController {
 
     public AnchorPane rootNode;
     public Button btnDetails;
+    public DatePicker datePicker;
+
     @FXML
     private Button btnCourse;
 
@@ -29,6 +33,12 @@ public class dashboardFormController {
 
     @FXML
     private Label lblStudentCount;
+
+    // Initialize method to set the current date in the DatePicker
+    @FXML
+    public void initialize() {
+        datePicker.setValue(LocalDate.now()); // Set the current date
+    }
 
     @FXML
     void btnCourseOnAction(ActionEvent event) throws IOException {
@@ -55,7 +65,7 @@ public class dashboardFormController {
         Scene scene = new Scene(node);
         Stage stage = (Stage) this.rootNode.getScene().getWindow();
         stage.setScene(scene);
-        stage.setTitle("Course Form");
+        stage.setTitle("User Form");
     }
 
     @FXML
@@ -66,5 +76,12 @@ public class dashboardFormController {
         detailsStage.setTitle("Course Student Details");
         detailsStage.setScene(new Scene(detailsPane));
         detailsStage.show();
+    }
+
+    @FXML
+    void datePickerOnAction(ActionEvent actionEvent) {
+        LocalDate selectedDate = datePicker.getValue();
+        // Handle the selected date as needed
+        System.out.println("Selected date: " + selectedDate);
     }
 }

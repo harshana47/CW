@@ -6,25 +6,32 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="635.0" prefWidth="921.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.studentFormController">
    <children>
-      <Label layoutX="298.0" layoutY="14.0" prefHeight="55.0" prefWidth="325.0" text="Student Managment">
+      <ImageView fitHeight="635.0" fitWidth="924.0" layoutX="-1.0">
+         <image>
+            <Image url="@assets/images/360_F_568150258_wQu1Nh35KwW2iUQ1CbHFLUCsa6EOQ8oU.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="333.0" layoutY="14.0" prefHeight="55.0" prefWidth="325.0" text="Student Managment" textFill="WHITE">
          <font>
             <Font name="Bodoni MT Bold" size="39.0" />
          </font>
       </Label>
-      <TextField fx:id="txtId" layoutX="91.0" layoutY="98.0" prefHeight="38.0" prefWidth="243.0" promptText="ID" />
-      <Label layoutX="91.0" layoutY="70.0" prefHeight="26.0" prefWidth="94.0" text="Student ID:" />
-      <TextField fx:id="txtName" layoutX="582.0" layoutY="98.0" prefHeight="38.0" prefWidth="243.0" promptText="Name" />
-      <Label layoutX="582.0" layoutY="70.0" prefHeight="26.0" prefWidth="94.0" text="Student Name:" />
-      <TextField fx:id="txtContact" layoutX="93.0" layoutY="176.0" prefHeight="38.0" prefWidth="243.0" promptText="Phone" />
-      <Label layoutX="93.0" layoutY="148.0" prefHeight="26.0" prefWidth="94.0" text="Contact:" />
-      <TextField fx:id="txtDate" layoutX="94.0" layoutY="339.0" prefHeight="38.0" prefWidth="243.0" promptText="Date" />
-      <Label layoutX="94.0" layoutY="311.0" prefHeight="26.0" prefWidth="94.0" text="Registered Date:" />
-      <TableView fx:id="tblStudents" layoutX="91.0" layoutY="413.0" prefHeight="201.0" prefWidth="738.0">
+      <TextField fx:id="txtId" layoutX="62.0" layoutY="98.0" prefHeight="38.0" prefWidth="243.0" promptText="ID" />
+      <Label layoutX="62.0" layoutY="70.0" prefHeight="26.0" prefWidth="94.0" text="Student ID:" textFill="WHITE" />
+      <TextField fx:id="txtName" layoutX="630.0" layoutY="98.0" prefHeight="38.0" prefWidth="243.0" promptText="Name" />
+      <Label layoutX="630.0" layoutY="70.0" prefHeight="26.0" prefWidth="94.0" text="Student Name:" textFill="WHITE" />
+      <TextField fx:id="txtContact" layoutX="64.0" layoutY="176.0" prefHeight="38.0" prefWidth="243.0" promptText="Phone" />
+      <Label layoutX="65.0" layoutY="145.0" prefHeight="26.0" prefWidth="94.0" text="Contact:" textFill="WHITE" />
+      <TextField fx:id="txtDate" layoutX="65.0" layoutY="339.0" prefHeight="38.0" prefWidth="243.0" promptText="Date" />
+      <Label layoutX="65.0" layoutY="311.0" prefHeight="26.0" prefWidth="94.0" text="Registered Date:" textFill="WHITE" />
+      <TableView fx:id="tblStudents" layoutX="62.0" layoutY="413.0" prefHeight="202.0" prefWidth="811.0">
         <columns>
           <TableColumn fx:id="colId" prefWidth="72.80001831054688" text="ID" />
           <TableColumn fx:id="colName" prefWidth="155.9999542236328" text="Name" />
@@ -33,15 +40,15 @@
             <TableColumn fx:id="colPayment" prefWidth="191.19998779296873" text="Payment" />
         </columns>
       </TableView>
-      <Button fx:id="btnSave" layoutX="757.0" layoutY="376.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="26.0" prefWidth="70.0" text="Save" />
-      <Button fx:id="btnUpdate" layoutX="676.0" layoutY="376.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="26.0" prefWidth="70.0" text="Update" />
-      <Button fx:id="btnSearch" layoutX="594.0" layoutY="376.0" mnemonicParsing="false" onAction="#btnSearchOnAction" prefHeight="26.0" prefWidth="70.0" text="Search" />
-      <Button fx:id="btnDelete" layoutX="511.0" layoutY="376.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="26.0" prefWidth="70.0" text="Delete" />
-      <TextField fx:id="txtPayment" layoutX="94.0" layoutY="258.0" prefHeight="38.0" prefWidth="243.0" promptText="Payment" />
-      <Label layoutX="94.0" layoutY="230.0" prefHeight="26.0" prefWidth="94.0" text="Payment:" />
-      <ListView fx:id="lsCourses" layoutX="496.0" layoutY="158.0" prefHeight="168.0" prefWidth="326.0" />
-      <Label fx:id="lblSelection" layoutX="496.0" layoutY="339.0" prefHeight="18.0" prefWidth="143.0" text="Selected Coursers" />
-      <Button fx:id="btnClear" layoutX="425.0" layoutY="376.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="26.0" prefWidth="70.0" text="Clear" />
-      <Button fx:id="btnDetails" layoutX="812.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnDetailsOnAction" prefHeight="26.0" prefWidth="94.0" text="See Details" />
+      <Button fx:id="btnSave" layoutX="801.0" layoutY="377.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="26.0" prefWidth="70.0" text="Save" />
+      <Button fx:id="btnUpdate" layoutX="720.0" layoutY="377.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="26.0" prefWidth="70.0" text="Update" />
+      <Button fx:id="btnSearch" layoutX="638.0" layoutY="377.0" mnemonicParsing="false" onAction="#btnSearchOnAction" prefHeight="26.0" prefWidth="70.0" text="Search" />
+      <Button fx:id="btnDelete" layoutX="555.0" layoutY="377.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="26.0" prefWidth="70.0" text="Delete" />
+      <TextField fx:id="txtPayment" layoutX="65.0" layoutY="258.0" prefHeight="38.0" prefWidth="243.0" promptText="Payment" />
+      <Label layoutX="65.0" layoutY="230.0" prefHeight="26.0" prefWidth="94.0" text="Payment:" textFill="WHITE" />
+      <ListView fx:id="lsCourses" layoutX="467.0" layoutY="158.0" prefHeight="168.0" prefWidth="406.0" />
+      <Label fx:id="lblSelection" layoutX="467.0" layoutY="339.0" prefHeight="18.0" prefWidth="143.0" text="Selected Coursers" />
+      <Button fx:id="btnClear" layoutX="469.0" layoutY="377.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="26.0" prefWidth="70.0" text="Clear" />
+      <Button fx:id="btnDetails" layoutX="806.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnDetailsOnAction" prefHeight="26.0" prefWidth="94.0" text="See Details" />
    </children>
 </AnchorPane>
