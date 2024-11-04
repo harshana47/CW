@@ -97,7 +97,6 @@ public class userFormController {
 
     @FXML
     void initialize() {
-        // Populate the ComboBox with some values
         cmbPosition.getItems().addAll("Admin", "Coordinator", "Teacher");
 
         // Set up the table columns
