@@ -8,25 +8,31 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class FactoryConfiguration {
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 
+public class FactoryConfiguration {
     private static FactoryConfiguration factoryConfiguration;
     private SessionFactory sessionFactory;
 
     private FactoryConfiguration() {
+        Properties properties = new Properties();
         try {
-            Configuration configuration = new Configuration().configure()
-                    .addAnnotatedClass(user.class)
-                    .addAnnotatedClass(Course.class)
-                    .addAnnotatedClass(Student.class)
-                    .addAnnotatedClass(courseStudentDetails.class);
-
-            sessionFactory = configuration.buildSessionFactory();
-            System.out.println("SessionFactory initialized successfully.");
-        } catch (Exception e) {
-            System.err.println("Initial SessionFactory creation failed: " + e);
-            throw new ExceptionInInitializerError(e);
+            properties.load(new FileInputStream("src/hibernate.properties"));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
+        Configuration configuration = new Configuration()
+                .addAnnotatedClass(user.class)
+                .addAnnotatedClass(Course.class)
+                .addAnnotatedClass(Student.class)
+                .addAnnotatedClass(courseStudentDetails.class);
+
+        configuration.setProperties(properties);
+        sessionFactory = configuration.buildSessionFactory();
+        System.out.println("SessionFactory initialized successfully.");
     }
 
     public static FactoryConfiguration getInstance() {
