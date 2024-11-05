@@ -20,6 +20,7 @@ public class userDAOImpl implements userDAO {
         try {
             session.save(entity);
             transaction.commit();
+            session.close();
             return true;
         } catch (Exception e) {
             transaction.rollback();
@@ -35,6 +36,7 @@ public class userDAOImpl implements userDAO {
         try {
             session.update(entity);
             transaction.commit();
+            session.close();
             return true;
         } catch (Exception e) {
             transaction.rollback();
@@ -52,6 +54,7 @@ public class userDAOImpl implements userDAO {
             if (entity != null) {
                 session.delete(entity);
                 transaction.commit();
+                session.close();
                 return true;
             }
             return false;
@@ -89,7 +92,7 @@ public class userDAOImpl implements userDAO {
         try (Session session = FactoryConfiguration.getInstance().getSession()) {
             Query<user> query = session.createQuery("FROM user WHERE username = :username", user.class);
             query.setParameter("username", un);
-            return query.uniqueResult(); // Returns a single result or null
+            return query.uniqueResult();
         } catch (Exception e) {
             e.printStackTrace();
             return null;

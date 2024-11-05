@@ -85,8 +85,6 @@ public class studentFormController {
         txtDate.setText(currentDate.format(formatter));
     }
 
-
-
     private void configureCourseListView() {
         lsCourses.setCellFactory(param -> new ListCell<CourseDTO>() {
             @Override
@@ -267,14 +265,15 @@ public class studentFormController {
         lblSelection.setText("");
     }
 
-    public void btnClearOnAction(ActionEvent actionEvent) {
+    public void btnClearOnAction(ActionEvent actionEvent) throws SQLException {
         clearFields();
 
-        // Clear existing items in the list view to prevent duplication
         lsCourses.getItems().clear();
 
-        loadCourses(); // Load courses again
+        loadCourses();
         loadStudents();
+        int nextId = studentBO.getNextStudentId();
+        txtId.setText(String.valueOf(nextId));
     }
 
     public void btnDetailsOnAction(ActionEvent actionEvent) throws IOException {

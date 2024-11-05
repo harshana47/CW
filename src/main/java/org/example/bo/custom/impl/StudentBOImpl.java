@@ -98,7 +98,7 @@ public class StudentBOImpl implements StudentBO {
             List<courseStudentDetails> details = studentDetailsDAO.getDetailsByStudentId(sId, session);
             for (courseStudentDetails detail : details) {
                 if (!studentDetailsDAO.delete(detail.getId(), session)) {
-                    transaction.rollback(); // Rollback if any delete fails
+                    transaction.rollback();
                     return false;
                 }
             }
@@ -123,9 +123,6 @@ public class StudentBOImpl implements StudentBO {
 
         return isDeleted;
     }
-
-
-
 
 
     @Override

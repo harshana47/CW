@@ -59,22 +59,32 @@ public class StudentDAOImpl implements StudentDAO {
     @Override
     public List<Student> getAll() {
         try (Session session = FactoryConfiguration.getInstance().getSession()) {
-            return session.createQuery("FROM Student", Student.class).list();
+            Transaction transaction = session.beginTransaction();
+            List<Student> students = session.createQuery("FROM Student", Student.class).list();
+            transaction.commit();
+            session.close();
+            return students;
         } catch (Exception e) {
             e.printStackTrace();
             return List.of();
         }
     }
 
+
     @Override
     public Student search(int id) {
         try (Session session = FactoryConfiguration.getInstance().getSession()) {
-            return session.get(Student.class, id);
+            Transaction transaction = session.beginTransaction();
+            Student student = session.get(Student.class, id);
+            transaction.commit();
+            session.close();
+            return student;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
+
 
     @Override
     public boolean save(Student student, Session session) {
@@ -95,8 +105,11 @@ public class StudentDAOImpl implements StudentDAO {
     @Override
     public int getNextId() {
         try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            Transaction transaction = session.beginTransaction();
             Query<Integer> query = session.createQuery("SELECT MAX(sId) FROM Student", Integer.class);
             Integer maxId = query.uniqueResult();
+            transaction.commit();
+            session.close();
             return (maxId != null) ? maxId + 1 : 1;
         } catch (Exception e) {
             e.printStackTrace();

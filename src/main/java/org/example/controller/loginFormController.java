@@ -42,7 +42,7 @@ public class loginFormController {
     @FXML
     void btnLoginOnAction(ActionEvent event) {
         String username = txtUserName.getText();
-        String password = getPassword();  // Get the password depending on the visibility state
+        String password = getPassword();  //visible one
 
         try {
             userDTO user = UserBO.findUserByUsername(username);
@@ -99,7 +99,7 @@ public class loginFormController {
         if (hashedPassword == null || !hashedPassword.startsWith("$2a$") && !hashedPassword.startsWith("$2b$") && !hashedPassword.startsWith("$2y$")) {
             throw new IllegalArgumentException("Invalid hashed password format");
         }
-        return BCrypt.checkpw(plainPassword, hashedPassword);
+        return BCrypt.checkpw(plainPassword, hashedPassword);//in built method
     }
 
     private void showAlert(String title, String message) {
