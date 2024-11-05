@@ -19,12 +19,20 @@ import java.io.IOException;
 
 public class loginFormController {
 
+    @FXML
     public AnchorPane rootNode;
+
     @FXML
     private Button btnLogin;
 
     @FXML
+    private Button btnTogglePassword;  // Show/Hide password button
+
+    @FXML
     private PasswordField txtPassword;
+
+    @FXML
+    private TextField txtPasswordVisible;  // A new text field to show password
 
     @FXML
     private TextField txtUserName;
@@ -34,13 +42,12 @@ public class loginFormController {
     @FXML
     void btnLoginOnAction(ActionEvent event) {
         String username = txtUserName.getText();
-        String password = txtPassword.getText();
+        String password = getPassword();  // Get the password depending on the visibility state
 
         try {
             userDTO user = UserBO.findUserByUsername(username);
             if (user != null && verifyPassword(password, user.getPassword())) {
                 showAlert("Login Successful", "Welcome, " + username + "!");
-
                 userDTO position = UserBO.findPositionByUserName(username);
                 if (position != null) {
                     switch (position.getPosition().toLowerCase()) {
@@ -95,12 +102,36 @@ public class loginFormController {
         return BCrypt.checkpw(plainPassword, hashedPassword);
     }
 
-
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    // Toggle password visibility
+    @FXML
+    private void togglePasswordVisibility(ActionEvent event) {
+        if (txtPassword.isVisible()) {
+            txtPassword.setVisible(false);
+            txtPasswordVisible.setText(txtPassword.getText());
+            txtPasswordVisible.setVisible(true);
+            btnTogglePassword.setText("Hide");
+        } else {
+            txtPasswordVisible.setVisible(false);
+            txtPassword.setText(txtPasswordVisible.getText());
+            txtPassword.setVisible(true);
+            btnTogglePassword.setText("Show");
+        }
+    }
+
+    // Helper method to get the password based on visibility
+    private String getPassword() {
+        if (txtPassword.isVisible()) {
+            return txtPassword.getText();
+        } else {
+            return txtPasswordVisible.getText();
+        }
     }
 }
