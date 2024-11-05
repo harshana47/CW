@@ -55,29 +55,24 @@ public class courseStudentDetailsFormController {
         }
 
         try {
-            int courseId = Integer.parseInt(courseIdText); // Convert the input to an integer
+            int courseId = Integer.parseInt(courseIdText);
 
-            // Fetch the details by course ID
             List<courseStudentDetailsDTO> courseStudentDetailsDTOList = courseStudentDetailsBOs.getByCourseId(courseId);
 
-            // Check if the list is empty
             if (courseStudentDetailsDTOList.isEmpty()) {
                 System.out.println("No details found for Course ID: " + courseId);
             } else {
                 System.out.println("Course details loaded for Course ID: " + courseId);
             }
 
-            // Update the TableView
             ObservableList<courseStudentDetailsDTO> courseStudentDetailsDTOS = FXCollections.observableArrayList(courseStudentDetailsDTOList);
             tblRegister.setItems(courseStudentDetailsDTOS);
 
         } catch (NumberFormatException e) {
-            // Handle invalid input (not a number)
-            System.out.println("Invalid Course ID. Please enter a numeric value.");
+            System.out.println("Invalid Course Id. Please enter a number .");
         } catch (Exception e) {
-            // Handle other exceptions
             e.printStackTrace();
-            System.out.println("An error occurred while searching for course details.");
+            System.out.println("error occurred while searching for course details.");
         }
     }
 

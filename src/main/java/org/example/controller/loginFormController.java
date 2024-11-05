@@ -126,7 +126,6 @@ public class loginFormController {
         }
     }
 
-    // Helper method to get the password based on visibility
     private String getPassword() {
         if (txtPassword.isVisible()) {
             return txtPassword.getText();

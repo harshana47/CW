@@ -34,7 +34,6 @@ public class dashboardFormController {
     @FXML
     private Label lblStudentCount;
 
-    // Initialize method to set the current date in the DatePicker
     @FXML
     public void initialize() {
         datePicker.setValue(LocalDate.now()); // Set the current date
@@ -81,7 +80,6 @@ public class dashboardFormController {
     @FXML
     void datePickerOnAction(ActionEvent actionEvent) {
         LocalDate selectedDate = datePicker.getValue();
-        // Handle the selected date as needed
         System.out.println("Selected date: " + selectedDate);
     }
 }

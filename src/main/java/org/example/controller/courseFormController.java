@@ -71,7 +71,7 @@ public class courseFormController {
         // Ensure a course ID is provided
         CourseDTO selectedCourse = tblCourse.getSelectionModel().getSelectedItem();
         if (selectedCourse == null) {
-            showAlert("Error", "Please select a course ID  delete.");
+            showAlert("Error", "Please select a course Id to delete.");
             return;
         }
 
@@ -81,12 +81,12 @@ public class courseFormController {
             if (courseBO.deleteCourse(cId)) {
                 loadAllCourses();
                 clearFields();
-                showAlert("Success", "Course deleted successfully.");
+                showAlert("Success", "deleted successfully.");
             } else {
-                showAlert("Error", "Failed to delete course!");
+                showAlert("Error", "Failed to delete!");
             }
         } catch (Exception e) {
-            showAlert("Error", "Failed to delete course: " + e.getMessage());
+            showAlert("Error", "Failed to delete!: " + e.getMessage());
         }
 
     }
@@ -104,7 +104,7 @@ public class courseFormController {
         if (courseBO.saveCourse(courseDTO)) {
             showAlert("Success", "Course saved successfully!");
             clearFields();
-            loadAllCourses(); // Refresh the table view
+            loadAllCourses();
         } else {
             showAlert("Error", "Failed to save course!");
         }

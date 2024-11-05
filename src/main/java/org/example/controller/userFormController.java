@@ -82,7 +82,7 @@ public class userFormController {
             int id = Integer.parseInt(txtId.getText());
             if (UserBO.delete(id)) {
                 showAlert("Success", "User deleted successfully");
-                btnClearOnAction(event); // Clear fields after deletion
+                btnClearOnAction(event);
                 loadUsers();
             } else {
                 showAlert("Error", "Failed to delete user");
@@ -99,21 +99,18 @@ public class userFormController {
     void initialize() {
         cmbPosition.getItems().addAll("Admin", "Coordinator", "Teacher");
 
-        // Set up the table columns
         colID.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
         colUserName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUsername()));
         colPassword.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPassword()));
         colPosition.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPosition()));
 
-        // Load users into the table
         loadUsers();
     }
 
     private void loadUsers() {
         try {
-            // Fetch all users from the business layer
-            List<userDTO> userList = UserBO.getAllUsers(); // You need to implement this method
-            tblUser.getItems().setAll(userList); // Set the items in the TableView
+            List<userDTO> userList = UserBO.getAllUsers();
+            tblUser.getItems().setAll(userList);
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
             showAlert("Error", "Failed to load user data: " + e.getMessage());
@@ -168,7 +165,6 @@ public class userFormController {
             String password = txtPassword.getText();
             String position = cmbPosition.getValue();
 
-            // Hash the password
             String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
 
             userDTO UserDTO = new userDTO(id, username, hashedPassword, position);
