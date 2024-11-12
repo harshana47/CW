@@ -7,44 +7,68 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.GaussianBlur?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="rootNode" prefHeight="605.0" prefWidth="854.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.userFormController">
-   <children>
-      <ImageView fitHeight="607.0" fitWidth="855.0">
-         <image>
-            <Image url="@assets/images/Space-Earth-Wallpaper-About-Murals.jpg" />
-         </image>
-      </ImageView>
-      <TableView fx:id="tblUser" layoutX="26.0" layoutY="324.0" prefHeight="258.0" prefWidth="805.0">
-        <columns>
-          <TableColumn fx:id="colID" prefWidth="75.0" text="ID" />
-          <TableColumn fx:id="colPosition" prefWidth="260.00001525878906" text="Position" />
-            <TableColumn fx:id="colUserName" prefWidth="215.20001220703125" text="User Name" />
-            <TableColumn fx:id="colPassword" prefWidth="255.99993896484375" text="Password" />
-        </columns>
-      </TableView>
-      <TextField fx:id="txtId" layoutX="26.0" layoutY="131.0" prefHeight="38.0" prefWidth="243.0" promptText="ID" />
-      <Label layoutX="26.0" layoutY="103.0" prefHeight="26.0" prefWidth="94.0" text="User ID:" textFill="WHITE" />
-      <Label layoutX="504.0" layoutY="103.0" prefHeight="26.0" prefWidth="94.0" text="Position:" textFill="WHITE" />
-      <TextField fx:id="txtUserName" layoutX="27.0" layoutY="215.0" prefHeight="38.0" prefWidth="243.0" promptText="User Name" />
-      <Label layoutX="27.0" layoutY="187.0" prefHeight="26.0" prefWidth="94.0" text="User Name:" textFill="WHITE" />
-      <Label layoutX="505.0" layoutY="187.0" prefHeight="26.0" prefWidth="94.0" text="Password:" textFill="WHITE" />
-      <Button fx:id="btnSave" layoutX="761.0" layoutY="280.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="26.0" prefWidth="70.0" text="Save" />
-      <Button fx:id="btnUpdate" layoutX="680.0" layoutY="280.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="26.0" prefWidth="70.0" text="Update" />
-      <Button fx:id="btnSearch" layoutX="598.0" layoutY="280.0" mnemonicParsing="false" onAction="#btnSearchOnAction" prefHeight="26.0" prefWidth="70.0" text="Search" />
-      <Button fx:id="btnDelete" layoutX="515.0" layoutY="280.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="26.0" prefWidth="70.0" text="Delete" />
-      <Button fx:id="btnClear" layoutX="429.0" layoutY="280.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="26.0" prefWidth="70.0" text="Clear" />
-      <Label layoutX="295.0" layoutY="23.0" prefHeight="46.0" prefWidth="267.0" text="User Registration" textFill="WHITE">
-         <font>
-            <Font name="Bodoni MT Bold" size="37.0" />
-         </font>
-      </Label>
-      <PasswordField fx:id="txtPassword" layoutX="504.0" layoutY="215.0" prefHeight="38.0" prefWidth="243.0" promptText="Password" />
-      <ComboBox fx:id="cmbPosition" layoutX="504.0" layoutY="131.0" prefHeight="38.0" prefWidth="243.0" />
-      <Button fx:id="btnBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnBackOnAction" prefHeight="38.0" prefWidth="70.0" text="Back" />
-   </children>
+
+   <!-- Background Image with GaussianBlur -->
+   <ImageView fitHeight="607.0" fitWidth="855.0">
+      <image>
+         <Image url="@assets/images/Space-Earth-Wallpaper-About-Murals.jpg" />
+      </image>
+      <effect>
+         <GaussianBlur radius="8" />
+      </effect>
+   </ImageView>
+
+   <!-- Overlay with semi-transparent dark color -->
+   <Rectangle fill="rgba(0, 0, 0, 0.4)" height="607.0" width="855.0" />
+
+   <!-- Form Title -->
+   <Label layoutX="281.0" layoutY="23.0" prefHeight="46.0" prefWidth="295.0" text="User Registration" textFill="WHITE">
+      <font>
+         <Font name="Rockwell" size="37.0" />
+      </font>
+   </Label>
+
+   <!-- User ID -->
+   <TextField fx:id="txtId" layoutX="26.0" layoutY="131.0" prefHeight="38.0" prefWidth="243.0" promptText="ID" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
+   <Label layoutX="26.0" layoutY="103.0" prefHeight="26.0" prefWidth="94.0" text="User ID:" textFill="WHITE" />
+
+   <!-- Position ComboBox -->
+   <ComboBox fx:id="cmbPosition" layoutX="504.0" layoutY="131.0" prefHeight="38.0" prefWidth="243.0" style="-fx-font-size: 14px; -fx-background-radius: 5px;" />
+   <Label layoutX="504.0" layoutY="103.0" prefHeight="26.0" prefWidth="94.0" text="Position:" textFill="WHITE" />
+
+   <!-- User Name -->
+   <TextField fx:id="txtUserName" layoutX="27.0" layoutY="215.0" prefHeight="38.0" prefWidth="243.0" promptText="User Name" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
+   <Label layoutX="27.0" layoutY="187.0" prefHeight="26.0" prefWidth="94.0" text="User Name:" textFill="WHITE" />
+
+   <!-- Password -->
+   <PasswordField fx:id="txtPassword" layoutX="504.0" layoutY="215.0" prefHeight="38.0" prefWidth="243.0" promptText="Password" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
+   <Label layoutX="505.0" layoutY="187.0" prefHeight="26.0" prefWidth="94.0" text="Password:" textFill="WHITE" />
+
+   <!-- Action Buttons -->
+   <Button fx:id="btnSave" layoutX="761.0" layoutY="280.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="36.0" prefWidth="70.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-background-radius: 5px;" text="Save" />
+   <Button fx:id="btnUpdate" layoutX="680.0" layoutY="280.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="36.0" prefWidth="70.0" style="-fx-background-color: #FF9800; -fx-text-fill: white; -fx-background-radius: 5px;" text="Update" />
+   <Button fx:id="btnSearch" layoutX="598.0" layoutY="280.0" mnemonicParsing="false" onAction="#btnSearchOnAction" prefHeight="36.0" prefWidth="70.0" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-background-radius: 5px;" text="Search" />
+   <Button fx:id="btnDelete" layoutX="515.0" layoutY="280.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="36.0" prefWidth="70.0" style="-fx-background-color: #F44336; -fx-text-fill: white; -fx-background-radius: 5px;" text="Delete" />
+   <Button fx:id="btnClear" layoutX="429.0" layoutY="280.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="36.0" prefWidth="70.0" style="-fx-background-color: #9E9E9E; -fx-text-fill: white; -fx-background-radius: 5px;" text="Clear" />
+
+   <!-- TableView for User Details -->
+   <TableView fx:id="tblUser" layoutX="26.0" layoutY="324.0" prefHeight="258.0" prefWidth="805.0" style="-fx-background-color: rgba(255, 255, 255, 0.7); -fx-font-size: 14px; -fx-border-radius: 8px;">
+      <columns>
+         <TableColumn fx:id="colID" prefWidth="75.0" text="ID" />
+         <TableColumn fx:id="colPosition" prefWidth="260.0" text="Position" />
+         <TableColumn fx:id="colUserName" prefWidth="215.0" text="User Name" />
+         <TableColumn fx:id="colPassword" prefWidth="255.0" text="Password" />
+      </columns>
+   </TableView>
+
+   <!-- Back Button -->
+   <Button fx:id="btnBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnBackOnAction" prefHeight="38.0" prefWidth="70.0" style="-fx-background-color: #673AB7; -fx-text-fill: white; -fx-background-radius: 5px;" text="Back" />
 </AnchorPane>

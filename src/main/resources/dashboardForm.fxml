@@ -6,50 +6,87 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.effect.GaussianBlur?>
 <AnchorPane fx:id="rootNode" prefHeight="548.0" prefWidth="919.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.dashboardFormController">
    <children>
+      <!-- Background Image with a darkened gradient overlay for readability -->
       <ImageView fitHeight="550.0" fitWidth="919.0">
          <image>
             <Image url="@assets/images/155599-antelope_canyon-vermilion_cliffs_national_monument-canyon-orange-formation-3840x2160.jpg" />
          </image>
+         <effect>
+            <GaussianBlur radius="10" />
+         </effect>
       </ImageView>
-      <Label layoutX="372.0" layoutY="56.0" prefHeight="62.0" prefWidth="174.0" text="Dashboard" textFill="WHITE">
+      <Rectangle fill="rgba(0,0,0,0.4)" height="550.0" width="919.0" />
+
+      <!-- Title Label with a larger font and professional typography -->
+      <Label layoutX="358.0" layoutY="56.0" prefHeight="63.0" prefWidth="202.0" text="Dashboard" textFill="WHITE">
          <font>
-            <Font name="Bodoni MT Bold" size="39.0" />
+            <Font name="Rockwell" size="39.0" />
          </font>
       </Label>
-      <Button fx:id="btnStudent" layoutX="94.0" layoutY="342.0" mnemonicParsing="false" onAction="#btnStudentOnAction" prefHeight="113.0" prefWidth="138.0" style="-fx-background-color: #6f7fe8;" text="Students">
+
+      <!-- Student Button with modern shadow, rounded corners and hover effect -->
+      <Button fx:id="btnStudent" alignment="BOTTOM_CENTER" layoutX="94.0" layoutY="342.0" mnemonicParsing="false" onAction="#btnStudentOnAction" prefHeight="113.0" prefWidth="138.0" style="-fx-background-color: #7a7a7a; -fx-background-radius: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 8, 0.5, 0, 4);" text="Student">
          <font>
-            <Font name="Calisto MT" size="25.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="btnCourse" layoutX="296.0" layoutY="342.0" mnemonicParsing="false" onAction="#btnCourseOnAction" prefHeight="113.0" prefWidth="138.0" style="-fx-background-color: #6f7fe8;" text="Courses">
+
+      <!-- Course Button with similar modern look -->
+      <Button fx:id="btnCourse" alignment="BOTTOM_CENTER" layoutX="296.0" layoutY="342.0" mnemonicParsing="false" onAction="#btnCourseOnAction" prefHeight="113.0" prefWidth="138.0" style="-fx-background-color: #7a7a7a; -fx-background-radius: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 8, 0.5, 0, 4);" text="Course">
          <font>
-            <Font name="Calisto MT" size="25.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="btnUser" layoutX="685.0" layoutY="342.0" mnemonicParsing="false" onAction="#btnUserOnAction" prefHeight="113.0" prefWidth="138.0" style="-fx-background-color: #6f7fe8;" text="Users">
+
+      <!-- User Button with consistent style -->
+      <Button fx:id="btnUser" alignment="BOTTOM_CENTER" layoutX="685.0" layoutY="342.0" mnemonicParsing="false" onAction="#btnUserOnAction" prefHeight="113.0" prefWidth="138.0" style="-fx-background-color: #7a7a7a; -fx-background-radius: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 8, 0.5, 0, 4);" text="User">
          <font>
-            <Font name="Calisto MT" size="38.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <Label fx:id="lblStudentCount" layoutX="178.0" layoutY="161.0" prefHeight="78.0" prefWidth="221.0" style="-fx-background-color: transparent;" text="Registered Students" textFill="WHITE">
+
+      <!-- Label for Registered Students -->
+      <Label fx:id="lblStudentCount" layoutX="178.0" layoutY="134.0" prefHeight="78.0" prefWidth="221.0" style="-fx-background-color: transparent;" text="Registered Students" textFill="WHITE">
          <font>
-            <Font name="Bodoni MT Bold" size="27.0" />
+            <Font name="Roboto" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="lblCourses" alignment="CENTER" layoutX="595.0" layoutY="161.0" prefHeight="78.0" prefWidth="131.0" style="-fx-background-color: transparent;" text="Courses" textFill="WHITE">
+
+      <!-- Label for Courses -->
+      <Label fx:id="lblCourses" alignment="CENTER" layoutX="549.0" layoutY="134.0" prefHeight="78.0" prefWidth="222.0" style="-fx-background-color: transparent;" text="Available Courses" textFill="WHITE">
          <font>
-            <Font name="Bodoni MT Bold" size="27.0" />
+            <Font name="Roboto" size="24.0" />
          </font>
       </Label>
-      <DatePicker fx:id="datePicker" layoutX="697.0" layoutY="20.0" onAction="#datePickerOnAction" prefHeight="36.0" prefWidth="201.0" />
-      <Button fx:id="btnDetails" layoutX="491.0" layoutY="342.0" mnemonicParsing="false" onAction="#btnDetailsOnAction" prefHeight="113.0" prefWidth="138.0" style="-fx-background-color: #6f7fe8;" text="Details">
+
+      <!-- Date Picker with modern borders -->
+      <DatePicker fx:id="datePicker" layoutX="697.0" layoutY="20.0" onAction="#datePickerOnAction" prefHeight="36.0" prefWidth="201.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #3498db; -fx-border-width: 2;" />
+
+      <!-- Details Button with hover effect -->
+      <Button fx:id="btnDetails" alignment="BOTTOM_CENTER" layoutX="491.0" layoutY="342.0" mnemonicParsing="false" onAction="#btnDetailsOnAction" prefHeight="113.0" prefWidth="138.0" style="-fx-background-color: #7a7a7a; -fx-background-radius: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 8, 0.5, 0, 4);" text="Details">
          <font>
-            <Font name="Calisto MT" size="25.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Button>
+      <ImageView fitHeight="56.0" fitWidth="68.0" layoutX="337.0" layoutY="360.0" preserveRatio="true">
+         <Image url="@assets/images/course.png" />
+      </ImageView>
+      <ImageView fitHeight="56.0" fitWidth="56.0" layoutX="135.0" layoutY="358.0" preserveRatio="true">
+         <Image url="@assets/images/user.png" />
+      </ImageView>
+      <ImageView fitHeight="49.0" fitWidth="56.0" layoutX="536.0" layoutY="361.0" preserveRatio="true">
+         <Image url="@assets/images/details.png" />
+      </ImageView>
+      <ImageView fitHeight="49.0" fitWidth="49.0" layoutX="730.0" layoutY="363.0" preserveRatio="true">
+         <Image url="@assets/images/student.png" />
+      </ImageView>
+      <Label layoutX="227.0" layoutY="202.0" prefHeight="62.0" prefWidth="117.0" style="-fx-background-color: #eb9e98; -fx-background-radius: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 8, 0.5, 0, 4);" />
+      <Label layoutX="602.0" layoutY="202.0" prefHeight="62.0" prefWidth="117.0" style="-fx-background-color: #98b9eb; -fx-background-radius: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 8, 0.5, 0, 4);" />
    </children>
 </AnchorPane>

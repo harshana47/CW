@@ -5,42 +5,65 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.GaussianBlur?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="548.0" prefWidth="919.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.courseFormController">
-   <children>
-      <ImageView fitHeight="548.0" fitWidth="919.0">
-         <image>
-            <Image url="@assets/images/photo-1470813740244-df37b8c1edcb.jpeg" />
-         </image>
-      </ImageView>
-      <Label layoutX="308.0" layoutY="24.0" prefHeight="55.0" prefWidth="325.0" text="Courses Managment" textFill="WHITE">
-         <font>
-            <Font name="Bodoni MT Bold" size="39.0" />
-         </font>
-      </Label>
-      <TextField fx:id="txtId" layoutX="101.0" layoutY="119.0" prefHeight="38.0" prefWidth="243.0" promptText="ID" />
-      <Label layoutX="101.0" layoutY="91.0" prefHeight="26.0" prefWidth="94.0" text="Course ID:" textFill="WHITE" />
-      <TextField fx:id="txtName" layoutX="592.0" layoutY="119.0" prefHeight="38.0" prefWidth="243.0" promptText="Name" />
-      <Label layoutX="592.0" layoutY="91.0" prefHeight="26.0" prefWidth="94.0" text="Course Name:" textFill="WHITE" />
-      <TextField fx:id="txtDuration" layoutX="103.0" layoutY="197.0" prefHeight="38.0" prefWidth="243.0" promptText="Duration" />
-      <Label layoutX="103.0" layoutY="169.0" prefHeight="26.0" prefWidth="94.0" text="Duration:" textFill="WHITE" />
-      <TextField fx:id="txtFee" layoutX="594.0" layoutY="197.0" prefHeight="38.0" prefWidth="243.0" promptText="Fee" />
-      <Label layoutX="594.0" layoutY="169.0" prefHeight="26.0" prefWidth="94.0" text="Course Fee:" textFill="WHITE" />
-      <TableView fx:id="tblCourse" layoutX="101.0" layoutY="329.0" prefHeight="200.0" prefWidth="737.0">
-         <columns>
-            <TableColumn fx:id="colId" prefWidth="157.60000610351562" text="ID" />
-            <TableColumn fx:id="colName" prefWidth="188.00001525878906" text="Name" />
-            <TableColumn fx:id="colDuration" prefWidth="176.800048828125" text="Duration" />
-            <TableColumn fx:id="colFee" prefWidth="215.20001220703125" text="Course Fee" />
-         </columns>
-      </TableView>
-      <Button fx:id="btnSave" layoutX="754.0" layoutY="272.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="38.0" prefWidth="75.0" text="Save" />
-      <Button fx:id="btnUpdate" layoutX="665.0" layoutY="272.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="38.0" prefWidth="75.0" text="Update" />
-      <Button fx:id="btnSearch" layoutX="580.0" layoutY="272.0" mnemonicParsing="false" onAction="#btnSearchOnAction" prefHeight="38.0" prefWidth="75.0" text="Search" />
-      <Button fx:id="btnDelete" layoutX="495.0" layoutY="272.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="38.0" prefWidth="75.0" text="Delete" />
-   </children>
+
+   <!-- Background Image with Gaussian Blur -->
+   <ImageView fitHeight="548.0" fitWidth="919.0">
+      <image>
+         <Image url="@assets/images/photo-1470813740244-df37b8c1edcb.jpeg" />
+      </image>
+      <effect>
+         <GaussianBlur radius="8" />
+      </effect>
+   </ImageView>
+
+   <!-- Overlay with semi-transparent dark color -->
+   <Rectangle fill="rgba(0, 0, 0, 0.4)" height="548.0" width="919.0" />
+
+   <!-- Form Title -->
+   <Label layoutX="273.0" layoutY="24.0" prefHeight="55.0" prefWidth="393.0" text="Courses Management" textFill="WHITE">
+      <font>
+         <Font name="Rockwell" size="39.0" />
+      </font>
+   </Label>
+
+   <!-- Course ID Field -->
+   <TextField fx:id="txtId" layoutX="101.0" layoutY="119.0" prefHeight="38.0" prefWidth="243.0" promptText="ID" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
+   <Label layoutX="101.0" layoutY="91.0" prefHeight="26.0" prefWidth="94.0" text="Course ID:" textFill="WHITE" />
+
+   <!-- Course Name Field -->
+   <TextField fx:id="txtName" layoutX="592.0" layoutY="119.0" prefHeight="38.0" prefWidth="243.0" promptText="Name" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
+   <Label layoutX="592.0" layoutY="91.0" prefHeight="26.0" prefWidth="94.0" text="Course Name:" textFill="WHITE" />
+
+   <!-- Duration Field -->
+   <TextField fx:id="txtDuration" layoutX="103.0" layoutY="197.0" prefHeight="38.0" prefWidth="243.0" promptText="Duration" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
+   <Label layoutX="103.0" layoutY="169.0" prefHeight="26.0" prefWidth="94.0" text="Duration:" textFill="WHITE" />
+
+   <!-- Course Fee Field -->
+   <TextField fx:id="txtFee" layoutX="594.0" layoutY="197.0" prefHeight="38.0" prefWidth="243.0" promptText="Fee" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
+   <Label layoutX="594.0" layoutY="169.0" prefHeight="26.0" prefWidth="94.0" text="Course Fee:" textFill="WHITE" />
+
+   <!-- Course Table -->
+   <TableView fx:id="tblCourse" layoutX="101.0" layoutY="329.0" prefHeight="200.0" prefWidth="737.0" style="-fx-background-color: rgba(255, 255, 255, 0.7); -fx-font-size: 14px; -fx-border-radius: 8px;">
+      <columns>
+         <TableColumn fx:id="colId" prefWidth="157.6" text="ID" />
+         <TableColumn fx:id="colName" prefWidth="188.0" text="Name" />
+         <TableColumn fx:id="colDuration" prefWidth="176.8" text="Duration" />
+         <TableColumn fx:id="colFee" prefWidth="215.2" text="Course Fee" />
+      </columns>
+   </TableView>
+
+   <!-- Action Buttons with custom styles -->
+   <Button fx:id="btnSave" layoutX="754.0" layoutY="272.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="38.0" prefWidth="75.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-background-radius: 5px;" text="Save" />
+   <Button fx:id="btnUpdate" layoutX="665.0" layoutY="272.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="38.0" prefWidth="75.0" style="-fx-background-color: #FF9800; -fx-text-fill: white; -fx-background-radius: 5px;" text="Update" />
+   <Button fx:id="btnSearch" layoutX="580.0" layoutY="272.0" mnemonicParsing="false" onAction="#btnSearchOnAction" prefHeight="38.0" prefWidth="75.0" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-background-radius: 5px;" text="Search" />
+   <Button fx:id="btnDelete" layoutX="495.0" layoutY="272.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="38.0" prefWidth="75.0" style="-fx-background-color: #F44336; -fx-text-fill: white; -fx-background-radius: 5px;" text="Delete" />
+
 </AnchorPane>
