@@ -12,7 +12,6 @@
 
 <?import javafx.scene.effect.GaussianBlur?>
 <AnchorPane prefHeight="572.0" prefWidth="814.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.courseStudentDetailsFormController">
-    <!-- Background Image -->
     <ImageView fitHeight="573.0" fitWidth="814.0">
         <image>
             <Image url="@assets/images/1260427.jpg" />
@@ -22,20 +21,16 @@
         </effect>
     </ImageView>
 
-    <!-- Header Label -->
     <Label layoutX="241.0" layoutY="14.0" prefHeight="55.0" prefWidth="332.0" text="Registered Students" textFill="WHITE">
         <font>
             <Font name="Rockwell" size="36.0" />
         </font>
     </Label>
 
-    <!-- Student ID Search TextField -->
     <TextField fx:id="txtCourseId" layoutX="24.0" layoutY="95.0" prefHeight="34.0" prefWidth="202.0" promptText="Enter Student ID" style="-fx-font-size: 14px; -fx-background-radius: 10px; -fx-border-color: #ddd; -fx-padding: 10px;" />
 
-    <!-- Search Button -->
     <Button fx:id="btnSearch" layoutX="239.0" layoutY="95.0" mnemonicParsing="false" onAction="#btnSearchOnAction" prefHeight="42.0" prefWidth="66.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5px;" text="Search" />
 
-    <!-- TableView for Registered Students -->
     <TableView fx:id="tblRegister" layoutX="24.0" layoutY="165.0" prefHeight="383.0" prefWidth="766.0" style="-fx-background-color: rgba(255, 255, 255, 0.7); -fx-border-radius: 20px;">
         <columns>
             <TableColumn fx:id="colStudentId" prefWidth="128.0" style="-fx-font-size: 14px; -fx-alignment: center;" text="Student ID" />

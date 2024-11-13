@@ -13,7 +13,6 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="635.0" prefWidth="921.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.studentFormController">
-   <!-- Background Image -->
    <ImageView fitHeight="635.0" fitWidth="924.0" layoutX="-1.0">
       <image>
          <Image url="@assets/images/360_F_568150258_wQu1Nh35KwW2iUQ1CbHFLUCsa6EOQ8oU.jpg" />
@@ -23,39 +22,31 @@
       </effect>
    </ImageView>
 
-   <!-- Header Label -->
    <Label layoutX="270.0" layoutY="14.0" prefHeight="55.0" prefWidth="381.0" text="Student Management" textFill="WHITE">
       <font>
          <Font name="Rockwell" size="39.0" />
       </font>
    </Label>
 
-   <!-- Student ID TextField -->
    <TextField fx:id="txtId" layoutX="62.0" layoutY="98.0" prefHeight="38.0" prefWidth="243.0" promptText="ID" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
    <Label layoutX="62.0" layoutY="70.0" prefHeight="26.0" prefWidth="94.0" text="Student ID:" textFill="WHITE" />
 
-   <!-- Student Name TextField -->
    <TextField fx:id="txtName" layoutX="630.0" layoutY="98.0" prefHeight="38.0" prefWidth="243.0" promptText="Name" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
    <Label layoutX="630.0" layoutY="70.0" prefHeight="26.0" prefWidth="94.0" text="Student Name:" textFill="WHITE" />
 
-   <!-- Contact TextField -->
    <TextField fx:id="txtContact" layoutX="64.0" layoutY="176.0" prefHeight="38.0" prefWidth="243.0" promptText="Phone" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
    <Label layoutX="65.0" layoutY="145.0" prefHeight="26.0" prefWidth="94.0" text="Contact:" textFill="WHITE" />
 
-   <!-- Registered Date TextField -->
    <TextField fx:id="txtDate" layoutX="65.0" layoutY="339.0" prefHeight="38.0" prefWidth="243.0" promptText="Date" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
    <Label layoutX="65.0" layoutY="311.0" prefHeight="26.0" prefWidth="94.0" text="Registered Date:" textFill="WHITE" />
 
-   <!-- Payment TextField -->
    <TextField fx:id="txtPayment" layoutX="65.0" layoutY="258.0" prefHeight="38.0" prefWidth="243.0" promptText="Payment" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
    <Label layoutX="65.0" layoutY="230.0" prefHeight="26.0" prefWidth="94.0" text="Payment:" textFill="WHITE" />
 
-   <!-- ListView for Courses -->
    <ListView fx:id="lsCourses" layoutX="467.0" layoutY="158.0" prefHeight="168.0" prefWidth="406.0" style="-fx-font-size: 14px; -fx-background-color: rgba(255, 255, 255, 0.7);" />
 
    <Label fx:id="lblSelection" layoutX="467.0" layoutY="339.0" prefHeight="18.0" prefWidth="143.0" text="Selected Courses" textFill="WHITE" />
 
-   <!-- TableView for Students -->
    <TableView fx:id="tblStudents" layoutX="62.0" layoutY="413.0" prefHeight="202.0" prefWidth="811.0" style="-fx-background-color: rgba(255, 255, 255, 0.7); -fx-border-radius: 8px; -fx-font-size: 14px;">
       <columns>
          <TableColumn fx:id="colId" prefWidth="72.0" style="-fx-alignment: center;" text="ID" />
@@ -66,7 +57,6 @@
       </columns>
    </TableView>
 
-   <!-- Buttons -->
    <Button fx:id="btnSave" layoutX="801.0" layoutY="369.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="36.0" prefWidth="70.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-background-radius: 5px;" text="Save" />
    <Button fx:id="btnUpdate" layoutX="720.0" layoutY="369.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="36.0" prefWidth="70.0" style="-fx-background-color: #FF9800; -fx-text-fill: white; -fx-background-radius: 5px;" text="Update" />
    <Button fx:id="btnSearch" layoutX="638.0" layoutY="369.0" mnemonicParsing="false" onAction="#btnSearchOnAction" prefHeight="36.0" prefWidth="70.0" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-background-radius: 5px;" text="Search" />
