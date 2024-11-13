@@ -10,12 +10,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.effect.GaussianBlur?>
 <AnchorPane prefHeight="572.0" prefWidth="814.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.courseStudentDetailsFormController">
     <!-- Background Image -->
     <ImageView fitHeight="573.0" fitWidth="814.0">
         <image>
             <Image url="@assets/images/1260427.jpg" />
         </image>
+        <effect>
+            <GaussianBlur radius="10" />
+        </effect>
     </ImageView>
 
     <!-- Header Label -->
