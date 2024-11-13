@@ -112,6 +112,18 @@ public class CourseDAOImpl implements CourseDAO {
     }
 
     @Override
+    public int getCount() {
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            Query<Long> query = session.createQuery("SELECT COUNT(*) FROM Course", Long.class);
+            Long count = query.uniqueResult();
+            return (count!= null)? count.intValue() : 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    @Override
     public Course search(int id) {
         return findCourseById(id); // Using the same method to find by ID
     }

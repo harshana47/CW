@@ -9,6 +9,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.example.bo.BOFactory;
+import org.example.bo.custom.CourseBO;
+import org.example.bo.custom.StudentBO;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -18,6 +21,11 @@ public class dashboardFormController {
     public AnchorPane rootNode;
     public Button btnDetails;
     public DatePicker datePicker;
+    public Label lblRegisteredStudents;
+    public Label lblAvailableCourses;
+
+    private StudentBO studentBO = (StudentBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.Student);
+    private CourseBO courseBO = (CourseBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.Course);
 
     @FXML
     private Button btnCourse;
@@ -37,6 +45,8 @@ public class dashboardFormController {
     @FXML
     public void initialize() {
         datePicker.setValue(LocalDate.now()); // Set the current date
+        fillRegisteredStudents();
+        fillCourseCount();
     }
 
     @FXML
@@ -81,5 +91,14 @@ public class dashboardFormController {
     void datePickerOnAction(ActionEvent actionEvent) {
         LocalDate selectedDate = datePicker.getValue();
         System.out.println("Selected date: " + selectedDate);
+    }
+
+    void fillRegisteredStudents(){
+        int count = studentBO.getStudentCount();
+        lblRegisteredStudents.setText(String.valueOf(count));
+    }
+    void fillCourseCount(){
+        int count = courseBO.getCourseCount();
+        lblAvailableCourses.setText(String.valueOf(count));
     }
 }

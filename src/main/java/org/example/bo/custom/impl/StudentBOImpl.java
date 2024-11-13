@@ -151,4 +151,9 @@ public class StudentBOImpl implements StudentBO {
         List<CourseDTO> registeredCourses = studentDetailsDAO.getCoursesByStudentId(studentId);
         return registeredCourses;
     }
+
+    @Override
+    public int getStudentCount() {
+        return studentDAO.getCount();
+    }
 }

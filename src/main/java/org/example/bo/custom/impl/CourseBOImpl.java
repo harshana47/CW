@@ -90,4 +90,9 @@ public class CourseBOImpl implements CourseBO {
     public int getNextCourseId(){
         return courseDAO.getNextId();
     }
+
+    @Override
+    public int getCourseCount() {
+        return courseDAO.getCount();
+    }
 }

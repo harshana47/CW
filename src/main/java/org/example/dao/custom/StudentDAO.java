@@ -13,4 +13,6 @@ public interface StudentDAO extends CrudDAO<Student> {
     boolean update(Student student,Session session);
     public boolean delete(int sId, Session session);
     int getNextId() throws SQLException;
+
+    int getCount();
 }

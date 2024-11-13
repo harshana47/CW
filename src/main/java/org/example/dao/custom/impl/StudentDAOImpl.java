@@ -116,4 +116,19 @@ public class StudentDAOImpl implements StudentDAO {
             return 1;
         }
     }
+
+    @Override
+    public int getCount() {
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            Transaction transaction = session.beginTransaction();
+            Query<Long> query = session.createQuery("SELECT COUNT(*) FROM Student", Long.class);
+            Long count = query.uniqueResult();
+            transaction.commit();
+            session.close();
+            return (count!= null)? count.intValue() : 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
 }

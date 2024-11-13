@@ -14,4 +14,6 @@ public interface CourseBO extends SuperBO {
     CourseDTO findCourseById(int id);
 
     int getNextCourseId();
+
+    int getCourseCount();
 }

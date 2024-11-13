@@ -17,4 +17,6 @@ public interface CourseDAO extends CrudDAO<Course> {
     int getNextId();
 
     boolean delete(int cId, Session session);
+
+    int getCount();
 }

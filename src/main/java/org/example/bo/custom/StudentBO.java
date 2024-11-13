@@ -24,4 +24,6 @@ public interface StudentBO extends SuperBO {
     int getNextStudentId() throws SQLException;
 
     public List<CourseDTO> getRegisteredCourses(int studentId) throws SQLException;
+
+    int getStudentCount();
 }
