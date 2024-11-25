@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import com.jfoenix.controls.JFXTextField;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -11,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.collections.ObservableList;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.example.bo.BOFactory;
@@ -24,6 +26,7 @@ import org.example.entity.Course;
 import org.example.entity.Student;
 import org.example.entity.courseStudentDetails;
 import org.example.dao.custom.courseStudentDetailsDAO;
+import org.example.util.Regex;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -192,10 +195,12 @@ public class studentFormController {
         }
 
         try {
-            if (studentBO.SaveStudent(studentDTO, courseStudentDetailsDTOs)) {
-                loadStudents();
-                clearFields();
-                showAlert("Success", "Student saved successfully.");
+            if (isValid()) {
+                if (studentBO.SaveStudent(studentDTO, courseStudentDetailsDTOs)) {
+                    loadStudents();
+                    clearFields();
+                    showAlert("Success", "Student saved successfully.");
+                }
             }
         } catch (SQLException | ClassNotFoundException e) {
             showAlert("Error", "Failed to save student: " + e.getMessage());
@@ -236,19 +241,23 @@ public class studentFormController {
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
         try {
-            int sId = Integer.parseInt(txtId.getText());
-            String name = txtName.getText();
-            String contact = txtContact.getText();
-            double payment = Double.parseDouble(txtPayment.getText());
-            String registeredDate = txtDate.getText();
+            if (isValid()) {
+                int sId = Integer.parseInt(txtId.getText());
+                String name = txtName.getText();
+                String contact = txtContact.getText();
+                double payment = Double.parseDouble(txtPayment.getText());
+                String registeredDate = txtDate.getText();
 
-            StudentDTO studentDTO = new StudentDTO(sId, name, contact, payment, registeredDate);
-            if (studentBO.updateStudent(studentDTO)) {
-                loadStudents();
-                clearFields();
-                showAlert("Success", "Student updated successfully.");
-            } else {
-                showAlert("Error", "Failed to update student.");
+                StudentDTO studentDTO = new StudentDTO(sId, name, contact, payment, registeredDate);
+                if (studentBO.updateStudent(studentDTO)) {
+                    loadStudents();
+                    clearFields();
+                    showAlert("Success", "Student updated successfully.");
+                } else {
+                    showAlert("Error", "Failed to update student.");
+                }
+            }else {
+                showAlert("Error", "Invalid input values.");
             }
         } catch (NumberFormatException e) {
             showAlert("Error", "Invalid input values.");
@@ -284,5 +293,29 @@ public class studentFormController {
         detailsStage.setTitle("Course Student Details");
         detailsStage.setScene(new Scene(detailsPane));
         detailsStage.show();
+    }
+
+    public boolean isValid(){
+        if (!Regex.setTextColor(org.example.util.TextField.ID, txtId)) return false;
+        if (!Regex.setTextColor(org.example.util.TextField.NAME, txtName)) return false;
+        if (!Regex.setTextColor(org.example.util.TextField.CONTACT,  txtContact)) return false;
+        if (!Regex.setTextColor(org.example.util.TextField.ADVANCE,  txtPayment)) return false;
+        return true;
+    }
+
+    public void txtPaymentOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(org.example.util.TextField.ADVANCE,  txtPayment);
+    }
+
+    public void txtContactOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(org.example.util.TextField.CONTACT,  txtContact);
+    }
+
+    public void txtNameOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(org.example.util.TextField.NAME, txtName);
+    }
+
+    public void txtIdOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(org.example.util.TextField.ID, txtId);
     }
 }

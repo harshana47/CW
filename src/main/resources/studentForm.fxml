@@ -28,19 +28,19 @@
       </font>
    </Label>
 
-   <TextField fx:id="txtId" layoutX="62.0" layoutY="98.0" prefHeight="38.0" prefWidth="243.0" promptText="ID" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
+   <TextField fx:id="txtId" layoutX="62.0" layoutY="98.0" onKeyReleased="#txtIdOnKeyReleased" prefHeight="38.0" prefWidth="243.0" promptText="ID" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
    <Label layoutX="62.0" layoutY="70.0" prefHeight="26.0" prefWidth="94.0" text="Student ID:" textFill="WHITE" />
 
-   <TextField fx:id="txtName" layoutX="630.0" layoutY="98.0" prefHeight="38.0" prefWidth="243.0" promptText="Name" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
+   <TextField fx:id="txtName" layoutX="630.0" layoutY="98.0" onKeyReleased="#txtNameOnKeyReleased" prefHeight="38.0" prefWidth="243.0" promptText="Name" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
    <Label layoutX="630.0" layoutY="70.0" prefHeight="26.0" prefWidth="94.0" text="Student Name:" textFill="WHITE" />
 
-   <TextField fx:id="txtContact" layoutX="64.0" layoutY="176.0" prefHeight="38.0" prefWidth="243.0" promptText="Phone" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
+   <TextField fx:id="txtContact" layoutX="64.0" layoutY="176.0" onKeyReleased="#txtContactOnKeyReleased" prefHeight="38.0" prefWidth="243.0" promptText="Phone" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
    <Label layoutX="65.0" layoutY="145.0" prefHeight="26.0" prefWidth="94.0" text="Contact:" textFill="WHITE" />
 
    <TextField fx:id="txtDate" layoutX="65.0" layoutY="339.0" prefHeight="38.0" prefWidth="243.0" promptText="Date" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
    <Label layoutX="65.0" layoutY="311.0" prefHeight="26.0" prefWidth="94.0" text="Registered Date:" textFill="WHITE" />
 
-   <TextField fx:id="txtPayment" layoutX="65.0" layoutY="258.0" prefHeight="38.0" prefWidth="243.0" promptText="Payment" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
+   <TextField fx:id="txtPayment" layoutX="65.0" layoutY="258.0" onKeyReleased="#txtPaymentOnKeyReleased" prefHeight="38.0" prefWidth="243.0" promptText="Payment" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
    <Label layoutX="65.0" layoutY="230.0" prefHeight="26.0" prefWidth="94.0" text="Payment:" textFill="WHITE" />
 
    <ListView fx:id="lsCourses" layoutX="467.0" layoutY="158.0" prefHeight="168.0" prefWidth="406.0" style="-fx-font-size: 14px; -fx-background-color: rgba(255, 255, 255, 0.7);" />

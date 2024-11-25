@@ -31,16 +31,16 @@
       </font>
    </Label>
 
-   <TextField fx:id="txtId" layoutX="101.0" layoutY="119.0" prefHeight="38.0" prefWidth="243.0" promptText="ID" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
+   <TextField fx:id="txtId" layoutX="101.0" layoutY="119.0" onKeyReleased="#txtIdOnKeyReleased" prefHeight="38.0" prefWidth="243.0" promptText="ID" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
    <Label layoutX="101.0" layoutY="91.0" prefHeight="26.0" prefWidth="94.0" text="Course ID:" textFill="WHITE" />
 
-   <TextField fx:id="txtName" layoutX="592.0" layoutY="119.0" prefHeight="38.0" prefWidth="243.0" promptText="Name" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
+   <TextField fx:id="txtName" layoutX="592.0" layoutY="119.0" onKeyReleased="#txtNameOnKeyReleased" prefHeight="38.0" prefWidth="243.0" promptText="Name" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
    <Label layoutX="592.0" layoutY="91.0" prefHeight="26.0" prefWidth="94.0" text="Course Name:" textFill="WHITE" />
 
-   <TextField fx:id="txtDuration" layoutX="103.0" layoutY="197.0" prefHeight="38.0" prefWidth="243.0" promptText="Duration" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
+   <TextField fx:id="txtDuration" layoutX="103.0" layoutY="197.0" onKeyReleased="#txtDurationOnKeyReleased" prefHeight="38.0" prefWidth="243.0" promptText="Duration" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
    <Label layoutX="103.0" layoutY="169.0" prefHeight="26.0" prefWidth="94.0" text="Duration:" textFill="WHITE" />
 
-   <TextField fx:id="txtFee" layoutX="594.0" layoutY="197.0" prefHeight="38.0" prefWidth="243.0" promptText="Fee" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
+   <TextField fx:id="txtFee" layoutX="594.0" layoutY="197.0" onKeyReleased="#txtFeeOnKeyReleased" prefHeight="38.0" prefWidth="243.0" promptText="Fee" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
    <Label layoutX="594.0" layoutY="169.0" prefHeight="26.0" prefWidth="94.0" text="Course Fee:" textFill="WHITE" />
 
    <TableView fx:id="tblCourse" layoutX="101.0" layoutY="329.0" prefHeight="200.0" prefWidth="737.0" style="-fx-background-color: rgba(255, 255, 255, 0.7); -fx-font-size: 14px; -fx-border-radius: 8px;">

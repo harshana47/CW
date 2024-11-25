@@ -8,9 +8,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.CourseBO;
 import org.example.dto.CourseDTO;
+import org.example.util.Regex;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -132,13 +134,16 @@ public class courseFormController {
                 txtDuration.getText(),
                 Double.parseDouble(txtFee.getText())
         );
-
-        if (courseBO.updateCourse(courseDTO)) {
-            showAlert("Success", "Course updated successfully!");
-            clearFields();
-            loadAllCourses();
-        } else {
-            showAlert("Error", "Failed to update course!");
+        if (isValid()) {
+            if (courseBO.updateCourse(courseDTO)) {
+                showAlert("Success", "Course updated successfully!");
+                clearFields();
+                loadAllCourses();
+            } else {
+                showAlert("Error", "Failed to update course!");
+            }
+        }else {
+            showAlert("Error", "Invalid input!");
         }
     }
 
@@ -167,6 +172,30 @@ public class courseFormController {
         colName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
         colDuration.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDuration()));
         colFee.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getFee()).asObject());
+    }
+
+    public boolean isValid(){
+        if (!Regex.setTextColor(org.example.util.TextField.ID, txtId)) return false;
+        if (!Regex.setTextColor(org.example.util.TextField.NAME, txtName)) return false;
+        if (!Regex.setTextColor(org.example.util.TextField.DURATION,  txtDuration)) return false;
+        if (!Regex.setTextColor(org.example.util.TextField.ADVANCE,  txtFee)) return false;
+        return true;
+    }
+
+    public void txtFeeOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(org.example.util.TextField.ADVANCE,  txtFee);
+    }
+
+    public void txtDurationOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(org.example.util.TextField.DURATION,  txtDuration);
+    }
+
+    public void txtNameOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(org.example.util.TextField.NAME, txtName);
+    }
+
+    public void txtIdOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(org.example.util.TextField.ID, txtId);
     }
 }
 

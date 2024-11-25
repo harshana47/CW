@@ -7,11 +7,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.userBO;
 import org.example.dto.userDTO;
+import org.example.util.Regex;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
@@ -196,5 +198,19 @@ public class userFormController {
         Stage stage = (Stage) this.rootNode.getScene().getWindow();
         stage.setScene(scene);
         stage.setTitle("Course Form");
+    }
+
+    public boolean isValid(){
+        if (!Regex.setTextColor(org.example.util.TextField.ID, txtId)) return false;
+        if (!Regex.setTextColor(org.example.util.TextField.NAME, txtUserName)) return false;
+        return true;
+    }
+
+    public void txtNameOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(org.example.util.TextField.NAME, txtUserName);
+    }
+
+    public void txtIdOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(org.example.util.TextField.ID, txtId);
     }
 }

@@ -33,13 +33,13 @@
       </font>
    </Label>
 
-   <TextField fx:id="txtId" layoutX="26.0" layoutY="131.0" prefHeight="38.0" prefWidth="243.0" promptText="ID" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
+   <TextField fx:id="txtId" layoutX="26.0" layoutY="131.0" onKeyReleased="#txtIdOnKeyReleased" prefHeight="38.0" prefWidth="243.0" promptText="ID" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
    <Label layoutX="26.0" layoutY="103.0" prefHeight="26.0" prefWidth="94.0" text="User ID:" textFill="WHITE" />
 
    <ComboBox fx:id="cmbPosition" layoutX="504.0" layoutY="131.0" prefHeight="38.0" prefWidth="243.0" style="-fx-font-size: 14px; -fx-background-radius: 5px;" />
    <Label layoutX="504.0" layoutY="103.0" prefHeight="26.0" prefWidth="94.0" text="Position:" textFill="WHITE" />
 
-   <TextField fx:id="txtUserName" layoutX="27.0" layoutY="215.0" prefHeight="38.0" prefWidth="243.0" promptText="User Name" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
+   <TextField fx:id="txtUserName" layoutX="27.0" layoutY="215.0" onKeyReleased="#txtNameOnKeyReleased" prefHeight="38.0" prefWidth="243.0" promptText="User Name" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />
    <Label layoutX="27.0" layoutY="187.0" prefHeight="26.0" prefWidth="94.0" text="User Name:" textFill="WHITE" />
 
    <PasswordField fx:id="txtPassword" layoutX="504.0" layoutY="215.0" prefHeight="38.0" prefWidth="243.0" promptText="Password" style="-fx-font-size: 14px; -fx-background-radius: 5px; -fx-border-color: #ddd;" />

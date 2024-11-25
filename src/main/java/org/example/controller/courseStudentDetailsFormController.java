@@ -11,9 +11,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.courseStudentDetailsBO;
 import org.example.dto.courseStudentDetailsDTO;
+import org.example.util.Regex;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -101,5 +103,14 @@ public class courseStudentDetailsFormController {
         colStudentId.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getsId()).asObject());
         colCourseFee.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getFee()).asObject());
         colDuration.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDuration()));
+    }
+
+    public boolean isValid(){
+        if (!Regex.setTextColor(org.example.util.TextField.ID, txtCourseId)) return false;
+        return true;
+    }
+
+    public void txtIdOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(org.example.util.TextField.ID, txtCourseId);
     }
 }

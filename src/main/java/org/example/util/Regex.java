@@ -1,6 +1,5 @@
 package org.example.util;
 
-import com.jfoenix.controls.JFXTextField;
 import javafx.scene.paint.Paint;
 import org.example.util.TextField;
 
@@ -12,17 +11,28 @@ public class Regex {
         String filed = "";
 
         switch (textField){
+            case DURATION :
+                filed = "^[1-9][0-9]*(?:[mMyY])$";
+                break;
+            case ADDRESS:
+                filed = "^[A-z|\\\\s]{3,}$";
+                break;
+            case ADVANCE:
+                filed = "^[0-9]+(\\.[0-9]{1,2})?$";
+                break;
             case ID:
-                filed = "^([A-Z][0-9]{3})$";
+                filed = "^[1-9][0-9]*$";
                 break;
             case NAME:
-                filed = "^[A-z|\\\\s]{3,}$";
+                filed = "^[A-Za-z]+(?: [A-Za-z]+)?$";
                 break;
             case EMAIL:
                 filed = "^([A-z])([A-z0-9.]){1,}[@]([A-z0-9]){1,10}[.]([A-z]){2,5}$";
                 break;
             case CONTACT:
-                filed = "^(?:\\+94|0094|0)[0-9]{9}$\n";
+                filed = "^(?:\\\\+94|94|0)(7[0-9]|0[0-9])[0-9]{7,8}$";
+                break;
+
         }
 
         Pattern pattern = Pattern.compile(filed);
@@ -43,14 +53,15 @@ public class Regex {
         return false;
     }
 
-    public static boolean setTextColor(TextField location, JFXTextField textField){
-        if (Regex.isTextFieldValid(location, textField.getText())){
-            textField.setFocusColor(Paint.valueOf("Green"));
-            textField.setUnFocusColor(Paint.valueOf("Green"));
+    public static boolean setTextColor(TextField location, javafx.scene.control.TextField textField){
+        if(Regex.isTextFieldValid(location,textField.getText())){
+            textField.setStyle("-fx-text-fill: green;");
+            textField.setStyle("-fx-text-fill: green;");
+
             return true;
-        }else {
-            textField.setFocusColor(Paint.valueOf("Red"));
-            textField.setUnFocusColor(Paint.valueOf("Red"));
+        }else{
+            textField.setStyle("-fx-text-fill: red;");
+            textField.setStyle("-fx-text-fill: red;");
             return false;
         }
     }
