@@ -36,7 +36,6 @@ public class CourseBOImpl implements CourseBO {
         Transaction transaction = null;
         boolean isDeleted = false;
         try {
-            // Open a session and start a transaction
             session = FactoryConfiguration.getInstance().getSession();
             transaction = session.beginTransaction();
 

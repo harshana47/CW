@@ -49,9 +49,7 @@ public class courseStudentDetailsFormController {
     void btnSearchOnAction(ActionEvent event) {
         String courseIdText = txtCourseId.getText().trim();
 
-        // Validate input
         if (courseIdText.isEmpty()) {
-            // You can show an alert dialog here if needed
             System.out.println("Please enter a Course ID.");
             return;
         }

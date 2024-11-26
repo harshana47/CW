@@ -125,6 +125,6 @@ public class CourseDAOImpl implements CourseDAO {
 
     @Override
     public Course search(int id) {
-        return findCourseById(id); // Using the same method to find by ID
+        return findCourseById(id);
     }
 }

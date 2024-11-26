@@ -81,7 +81,7 @@ public class courseStudentDetailsDAOImpl implements courseStudentDetailsDAO {
             return query.list();
         } catch (Exception e) {
             e.printStackTrace();
-            return new ArrayList<>(); // Return an empty list in case of error
+            return new ArrayList<>();
         }
     }
 
@@ -97,8 +97,8 @@ public class courseStudentDetailsDAOImpl implements courseStudentDetailsDAO {
                     .setParameter("studentId", studentId)
                     .getResultList();
         } catch (Exception e) {
-            e.printStackTrace(); // Handle exception
-            return List.of(); // Return empty list in case of error
+            e.printStackTrace();
+            return List.of();
         }
     }
 
@@ -110,9 +110,9 @@ public class courseStudentDetailsDAOImpl implements courseStudentDetailsDAO {
                 session.delete(detail);
                 return true;
             }
-            return false; // Detail not found
+            return false;
         } catch (Exception e) {
-            e.printStackTrace(); // Handle exception
+            e.printStackTrace();
             return false;
         }
     }
@@ -124,8 +124,8 @@ public class courseStudentDetailsDAOImpl implements courseStudentDetailsDAO {
                     .setParameter("courseId", cId)
                     .getResultList();
         } catch (Exception e) {
-            e.printStackTrace(); // Handle exception
-            return List.of(); // Return empty list in case of error
+            e.printStackTrace();
+            return List.of();
         }
     }
     @Override
@@ -137,7 +137,7 @@ public class courseStudentDetailsDAOImpl implements courseStudentDetailsDAO {
             return query.list();
         } catch (Exception e) {
             e.printStackTrace();
-            return new ArrayList<>(); // Return an empty list in case of error
+            return new ArrayList<>();
         }
     }
 

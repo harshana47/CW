@@ -126,7 +126,6 @@ public class userFormController {
         String position = cmbPosition.getValue();
         String username = txtUserName.getText();
 
-        // Hash the password
         String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
 
         userDTO UserDTO = new userDTO(0, username, hashedPassword, position);

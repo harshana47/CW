@@ -10,7 +10,7 @@ public interface userBO extends SuperBO {
     boolean save(userDTO UserDTO) throws SQLException, ClassNotFoundException;
     boolean update(userDTO UserDTO) throws SQLException, ClassNotFoundException;
     boolean delete(int id) throws SQLException, ClassNotFoundException;
-    userDTO findUserById(int id) throws Exception; // Assuming you need this for search
+    userDTO findUserById(int id) throws Exception;
     userDTO findPositionByUserName(String un);
     userDTO findUserByUsername(String username) throws Exception;
     List<userDTO> getAllUsers() throws SQLException, ClassNotFoundException;

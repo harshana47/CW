@@ -105,7 +105,7 @@ public class userDAOImpl implements userDAO {
         try (Session session = FactoryConfiguration.getInstance().getSession()) {
             Query<user> query = session.createQuery("FROM user WHERE username = :username", user.class);
             query.setParameter("username", username);
-            return query.uniqueResult(); // Returns a single result or null
+            return query.uniqueResult();
         } catch (Exception e) {
             e.printStackTrace();
             return null;

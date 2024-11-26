@@ -15,7 +15,7 @@ public class courseStudentDetails {
 
     @ManyToOne
     @JoinColumn(name = "cId")
-    private Course course; // Assuming you have a Course class
+    private Course course;
 
     @ManyToOne
     @JoinColumn(name = "sId")

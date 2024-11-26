@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface StudentBO extends SuperBO {
-    // Save a student along with associated course details
     boolean SaveStudent(StudentDTO studentDTO, List<courseStudentDetailsDTO> courseStudentDetailsDTOs)
             throws SQLException, ClassNotFoundException;
 
