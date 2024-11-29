@@ -106,6 +106,21 @@ public class userFormController {
         colPassword.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPassword()));
         colPosition.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPosition()));
 
+        //hide password
+        colPassword.setCellFactory(column -> {
+            return new TableCell<userDTO, String>() {
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty || item == null) {
+                        setText(null);
+                    } else {
+                        setText("•".repeat(7));
+                    }
+                }
+            };
+        });
+
         loadUsers();
     }
 
