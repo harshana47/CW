@@ -70,7 +70,6 @@ public class courseFormController {
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
-        // Ensure a course ID is provided
         CourseDTO selectedCourse = tblCourse.getSelectionModel().getSelectedItem();
         if (selectedCourse == null) {
             showAlert("Error", "Please select a course Id to delete.");

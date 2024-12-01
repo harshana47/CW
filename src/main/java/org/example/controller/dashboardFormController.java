@@ -44,7 +44,7 @@ public class dashboardFormController {
 
     @FXML
     public void initialize() {
-        datePicker.setValue(LocalDate.now()); // Set the current date
+        datePicker.setValue(LocalDate.now());
         fillRegisteredStudents();
         fillCourseCount();
     }

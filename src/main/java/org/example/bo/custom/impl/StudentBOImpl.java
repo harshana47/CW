@@ -143,11 +143,10 @@ public class StudentBOImpl implements StudentBO {
 
     @Override
     public int getNextStudentId() throws SQLException {
-        return studentDAO.getNextId(); // Ensure you implement this method in the StudentDAO
+        return studentDAO.getNextId();
     }
     @Override
     public List<CourseDTO> getRegisteredCourses(int studentId) throws SQLException {
-        // Fetch registered courses using the studentDetailsDAO
         List<CourseDTO> registeredCourses = studentDetailsDAO.getCoursesByStudentId(studentId);
         return registeredCourses;
     }

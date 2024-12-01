@@ -35,7 +35,7 @@ public class userBOImpl implements userBO {
         if (User != null) {
             return new userDTO(User.getId(), User.getUsername(), User.getPassword(), User.getPosition());
         }
-        return null; // Return null if no user found
+        return null;
     }
 
     @Override
@@ -44,7 +44,7 @@ public class userBOImpl implements userBO {
         if (User != null) {
             return new userDTO(User.getId(), User.getUsername(), User.getPassword(), User.getPosition());
         }
-        return null; // Return null if the user is not found
+        return null;
     }
 
     @Override
@@ -53,12 +53,12 @@ public class userBOImpl implements userBO {
         if (User != null) {
             return new userDTO(User.getId(), User.getUsername(), User.getPassword(), User.getPosition());
         }
-        return null; // Return null if no user found
+        return null;
     }
 
     @Override
     public List<userDTO> getAllUsers() throws SQLException, ClassNotFoundException {
-        List<user> users = UserDAO.getAll(); // Assuming this method is available
+        List<user> users = UserDAO.getAll();
         List<userDTO> userDTOs = new ArrayList<>();
         for (user User : users) {
             userDTOs.add(new userDTO(User.getId(), User.getUsername(), User.getPassword(), User.getPosition()));
